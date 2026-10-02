@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>教育經濟評估讀本</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700;8..60,900&family=Source+Sans+3:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#EEF1F6; --paper:#FFFFFF; --ink:#1C2333; --title:#10182B; --mute:#5C6579; --line:#DCE1EA; --zebra:#F5F7FB;
+  --accent:#8C6106; --accent-soft:#F3E8C9; --accent-ink:#5C4004;
+  --good:#1E7A5C; --good-soft:#E1F1EA;
+  --warnbg:#FDEEDC; --warnline:#EFC48C; --warnink:#7A4415;
+  --badbg:#FBE8E8; --badline:#E7A9A9; --badink:#8A2020;
+  --p1:#9C3F5E; --p1-soft:#F6E4EB; --p2:#1E7A5C; --p2-soft:#E1F1EA; --p3:#2C5A96; --p3-soft:#E3ECF7; --p4:#8A5626; --p4-soft:#F3E7D9;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10141D; --paper:#171D29; --ink:#D9E0EC; --title:#F1F4FA; --mute:#93A0B8; --line:#2B3548; --zebra:#1C2433;
+    --accent:#E0B23D; --accent-soft:#3A2F12; --accent-ink:#F5DDA0;
+    --good:#5FCBA0; --good-soft:#183226;
+    --warnbg:#3A2A12; --warnline:#6B4E1E; --warnink:#F0C87F;
+    --badbg:#3A1818; --badline:#6B2E2E; --badink:#F0A8A8;
+    --p1:#E38AAE; --p1-soft:#3A2230; --p2:#5FCBA0; --p2-soft:#183226; --p3:#7FAEE6; --p3-soft:#1B2A3E; --p4:#D6A15E; --p4-soft:#3A2C18;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10141D; --paper:#171D29; --ink:#D9E0EC; --title:#F1F4FA; --mute:#93A0B8; --line:#2B3548; --zebra:#1C2433;
+  --accent:#E0B23D; --accent-soft:#3A2F12; --accent-ink:#F5DDA0;
+  --good:#5FCBA0; --good-soft:#183226;
+  --warnbg:#3A2A12; --warnline:#6B4E1E; --warnink:#F0C87F;
+  --badbg:#3A1818; --badline:#6B2E2E; --badink:#F0A8A8;
+  --p1:#E38AAE; --p1-soft:#3A2230; --p2:#5FCBA0; --p2-soft:#183226; --p3:#7FAEE6; --p3-soft:#1B2A3E; --p4:#D6A15E; --p4-soft:#3A2C18;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:96px}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Source Sans 3","PingFang TC","Microsoft JhengHei","Noto Sans TC","Helvetica Neue",Arial,system-ui,sans-serif;
+  font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;
+  padding-inline:16px}
+h1,h2,h3,h4{font-family:"Source Serif 4","PingFang TC","Microsoft JhengHei","Noto Sans TC",Georgia,serif;text-wrap:balance}
+a{color:var(--accent)}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:none}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+/* ---- top bar ---- */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-inline:-16px;padding-inline:16px;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topin{max-width:1220px;margin:0 auto;padding-block:10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-family:"Source Serif 4","PingFang TC","Microsoft JhengHei",Georgia,serif;font-weight:900;font-size:18px;color:var(--title);white-space:nowrap}
+.tabs{display:flex;gap:4px;background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:3px;flex-wrap:wrap}
+.tabbtn{padding:7px 14px;border-radius:8px;font-weight:700;font-size:15px;color:var(--mute);white-space:nowrap}
+.tabbtn[aria-selected="true"]{background:var(--accent);color:#fff}
+.spacer{flex:1}
+.themebtn{border:1px solid var(--line);background:var(--paper);border-radius:9px;width:34px;height:34px;font-size:16px;color:var(--ink)}
+
+/* ---- layout ---- */
+main{max-width:1220px;margin:0 auto}
+.tabpanel{padding-block:26px 64px}
+.layout{display:grid;grid-template-columns:236px minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:1fr}.side{position:static;max-height:none}}
+.side{position:sticky;top:64px;max-height:calc(100dvh - 84px);overflow:auto;padding-right:4px}
+.tocbox summary{font-weight:700;color:var(--title);cursor:pointer;margin-bottom:6px;font-size:14.5px}
+.toc{list-style:none;margin:0;padding:0;font-size:14px}
+.toc a{display:block;color:var(--mute);text-decoration:none;padding:5px 10px;border-left:2px solid transparent;border-radius:0 6px 6px 0}
+.toc a:hover{color:var(--ink);background:var(--zebra)}
+.toc a.on{color:var(--accent);border-left-color:var(--accent);font-weight:700;background:var(--accent-soft)}
+.doc{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:34px clamp(18px,4vw,48px) 50px;min-width:0}
+.dh{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:6px}
+.eyebrow{font-size:13px;letter-spacing:.06em;color:var(--accent);font-weight:700}
+.dh h1{margin:8px 0 8px;font-size:clamp(25px,3.4vw,33px);line-height:1.25;color:var(--title);font-weight:900}
+.subl{margin:0;color:var(--mute);font-size:14.5px;max-width:70ch}
+.h1{font-size:23px;color:var(--title);margin:44px 0 14px;padding-top:16px;border-top:3px solid var(--accent);font-weight:900;font-family:"Source Serif 4","PingFang TC","Microsoft JhengHei",Georgia,serif}
+.h1:first-of-type{margin-top:30px}
+.h2{font-size:19px;color:var(--title);margin:30px 0 10px;font-weight:700}
+p{margin:9px 0;max-width:42em}
+.lead{font-size:18px;color:var(--ink)}
+.dim{color:var(--mute)}
+ul.lst,ol.lst{margin:10px 0;padding-left:1.3em;max-width:44em}
+.lst li{margin:6px 0}
+.lst li b{color:var(--title)}
+
+/* ---- tags ---- */
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:700;border-radius:999px;padding:2px 10px;white-space:nowrap;line-height:1.9}
+.tag .dot{width:7px;height:7px;border-radius:50%;flex:none}
+.tag-p1{background:var(--p1-soft);color:var(--p1)} .tag-p1 .dot{background:var(--p1)}
+.tag-p2{background:var(--p2-soft);color:var(--p2)} .tag-p2 .dot{background:var(--p2)}
+.tag-p3{background:var(--p3-soft);color:var(--p3)} .tag-p3 .dot{background:var(--p3)}
+.tag-p4{background:var(--p4-soft);color:var(--p4)} .tag-p4 .dot{background:var(--p4)}
+.tagrow{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+
+/* ---- boxes ---- */
+.goal{background:var(--accent-soft);border-radius:11px;padding:12px 16px;color:var(--accent-ink);max-width:none;margin:14px 0}
+.goal b{margin-right:8px}
+.warn{background:var(--warnbg);border:1px solid var(--warnline);border-radius:12px;padding:12px 16px;margin:16px 0;color:var(--warnink)}
+.warn p{max-width:none;margin:5px 0}
+.warn .wh{font-weight:700;display:block;margin-bottom:4px}
+.callout{background:var(--zebra);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:16px 0}
+.callout p{max-width:none}
+
+/* ---- cards ---- */
+.pcard{border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:16px 0;background:var(--paper)}
+.pcard h4{margin:2px 0 8px;font-size:17px;color:var(--title)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:900px){.grid2,.grid4{grid-template-columns:1fr}}
+
+/* ---- table ---- */
+.tw{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.55;min-width:520px}
+th{background:var(--title);color:var(--bg);text-align:left;padding:9px 12px;font-weight:700;vertical-align:top}
+:root[data-theme="dark"] th{color:#0D131D;background:#D9E0EC}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) th{color:#0D131D;background:#D9E0EC}}
+td{padding:8px 12px;border-top:1px solid var(--line);vertical-align:top}
+tbody tr:nth-child(even) td{background:var(--zebra)}
+
+/* ---- diagram ---- */
+.diagram{border:1px dashed var(--line);border-radius:14px;padding:20px;margin:18px 0;background:var(--zebra)}
+.dtop{text-align:center;font-weight:700;color:var(--title);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 16px;margin:0 auto 14px;max-width:520px}
+.dbranch{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.dbranch{grid-template-columns:1fr}}
+.dcol{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px}
+.dcol h5{margin:0 0 8px;font-size:15px;color:var(--title)}
+.dchain{display:flex;flex-direction:column;gap:6px}
+.dnode{border-radius:9px;padding:7px 10px;font-size:14px;font-weight:700}
+.darrow{text-align:center;color:var(--mute);font-size:13.5px}
+.dfoot{margin-top:14px;font-size:14.5px;color:var(--mute);text-align:center}
+
+/* ---- terms ---- */
+.term{display:inline;border-bottom:2px dotted var(--accent);color:var(--accent-ink);font-weight:700;padding:0 1px;background:var(--accent-soft);border-radius:4px}
+.term:hover{background:var(--accent);color:#fff}
+.glossgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:14px 0}
+@media (max-width:760px){.glossgrid{grid-template-columns:1fr}}
+.gcard{border:1px solid var(--line);border-radius:11px;padding:12px 14px;background:var(--paper);transition:box-shadow .5s,border-color .3s}
+.gcard.flash{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.gcard summary{cursor:pointer;font-weight:700;color:var(--title);list-style:none;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gcard summary::-webkit-details-marker{display:none}
+.gcard summary::before{content:"+";color:var(--accent);font-weight:900;width:16px}
+.gcard[open] summary::before{content:"–"}
+.gcard p{margin:8px 0 0;font-size:15px;color:var(--ink);max-width:none}
+.gfilter{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 16px}
+.gfilter button{border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13.5px;font-weight:700;color:var(--mute);background:var(--paper)}
+.gfilter button.on{background:var(--title);color:var(--bg);border-color:var(--title)}
+
+/* ---- quiz ---- */
+.qcard{border:1px solid var(--line);border-radius:13px;padding:16px 18px;margin:16px 0;background:var(--paper)}
+.qhead{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:8px}
+.qnum{font-weight:900;color:var(--accent);font-family:"IBM Plex Mono",monospace}
+.qtext{font-weight:700;color:var(--title);margin:6px 0 12px;font-size:16.5px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:9px 12px;text-align:left;font-size:15.5px}
+.opt:hover{border-color:var(--accent)}
+.opt.correct{border-color:var(--good);background:var(--good-soft)}
+.opt.wrong{border-color:var(--badline);background:var(--badbg)}
+.opt.disabled{cursor:default}
+.optmark{flex:none;width:20px;font-weight:900}
+.explain{margin-top:10px;padding:10px 14px;border-radius:10px;background:var(--zebra);font-size:15px;display:none}
+.explain.show{display:block}
+.matchwrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:760px){.matchwrap{grid-template-columns:1fr}}
+.mitem{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:15px;text-align:left;width:100%}
+.mitem.sel{border-color:var(--accent);background:var(--accent-soft)}
+.mitem.done{border-color:var(--good);background:var(--good-soft);opacity:.75}
+.mitem.bad{border-color:var(--badline);background:var(--badbg)}
+.mtag{width:100%;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-weight:700;text-align:center}
+.mtag.done{opacity:.4}
+.mtag.bad{outline:2px solid var(--badline)}
+.scorebar{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0}
+.stat{background:var(--zebra);border-radius:11px;padding:12px 18px;text-align:center;flex:1;min-width:120px}
+.stat b{display:block;font-size:24px;color:var(--title);font-family:"IBM Plex Mono",monospace}
+.stat span{font-size:13px;color:var(--mute)}
+textarea.ans{width:100%;min-height:120px;border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit;background:var(--paper);color:var(--ink);resize:vertical}
+.rubric{border:1px dashed var(--line);border-radius:11px;padding:12px 16px;margin-top:10px}
+.rubric summary{cursor:pointer;font-weight:700;color:var(--accent-ink)}
+.ex{border-radius:9px;padding:10px 13px;margin:8px 0;font-size:14.5px}
+.ex.good{background:var(--good-soft);border:1px solid var(--good)}
+.ex.bad{background:var(--badbg);border:1px solid var(--badline)}
+.savedmark{font-size:13px;color:var(--good);margin-left:8px}
+.resetbtn{margin-top:10px;border:1px solid var(--line);border-radius:8px;padding:6px 14px;font-weight:700;font-size:14px;color:var(--mute);background:var(--paper)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ---- W4 additions ---- */
+.ch8{--c:var(--p2);--cs:var(--p2-soft)} .ch10{--c:var(--p4);--cs:var(--p4-soft)}
+.lecbadge,.disbadge{display:inline-block;font-size:12.5px;font-weight:800;border-radius:999px;padding:2px 12px;margin-right:8px;letter-spacing:.04em}
+.lecbadge{background:var(--cs,var(--accent-soft));color:var(--c,var(--accent-ink))}
+.disbadge{background:var(--title);color:var(--bg)}
+.disc .disbadge{background:#E9B949;color:#1A1A1A}
+:root[data-theme="dark"] .disbadge{color:#0D131D} @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .disbadge{color:#0D131D}}
+.round{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:44px 0 6px;padding-top:16px;border-top:3px solid var(--c,var(--accent))}
+.round h2{margin:0;font-size:23px;color:var(--title);font-weight:900}
+.formula{background:var(--title);color:var(--bg);border-radius:12px;padding:16px 20px;margin:14px 0;font-size:20px;font-weight:700;text-align:center}
+:root[data-theme="dark"] .formula{background:#D9E0EC;color:#0D131D} @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .formula{background:#D9E0EC;color:#0D131D}}
+.formula small{display:block;font-size:14px;font-weight:500;opacity:.85;margin-top:4px}
+.bars{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0;background:var(--paper)}
+.bars h5{margin:0 0 10px;font-size:14.5px;color:var(--mute);font-weight:600}
+.brow{display:grid;grid-template-columns:minmax(96px,150px) 1fr;gap:10px;align-items:center;margin:6px 0;font-size:14.5px}
+.btrack{background:var(--zebra);border-radius:6px;height:26px;position:relative;overflow:hidden}
+.bfill{height:100%;background:var(--c,var(--accent));opacity:.45;border-radius:6px;min-width:3px}
+.bfill.hi{opacity:1}
+.bval{position:absolute;left:8px;top:0;line-height:26px;font-weight:700;font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--title)}
+.bfill2{height:100%;background:var(--p4);opacity:.85;border-radius:6px;min-width:3px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--mute);margin:0 0 8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.disc{background:var(--title);color:var(--bg);border-radius:16px;padding:20px clamp(16px,3vw,28px) 22px;margin:22px 0}
+:root[data-theme="dark"] .disc{background:#222C3F;color:#E4EAF4} @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .disc{background:#222C3F;color:#E4EAF4}}
+.disc h3{margin:0 0 4px;font-size:20px;color:inherit}
+.disc .dsub{opacity:.75;font-size:14px;margin:0 0 14px;max-width:none}
+.orid{display:grid;grid-template-columns:44px 1fr;gap:6px 14px;align-items:start;margin:8px 0}
+.orid .l{width:40px;height:40px;border-radius:50%;background:#E9B949;color:#1A1A1A;font-weight:900;display:flex;align-items:center;justify-content:center;font-family:"IBM Plex Mono",monospace;font-size:19px}
+.orid .t{padding-top:2px;max-width:none;margin:0} .orid .t small{display:block;color:#E9B949;font-weight:700;font-size:12.5px}
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+.flow .st{flex:1;min-width:120px;background:rgba(255,255,255,.1);border-radius:10px;padding:8px 12px;font-size:13.5px}
+.flow .st b{display:block;font-family:"IBM Plex Mono",monospace;font-size:18px;color:#E9B949}
+.disc details{margin-top:12px;border-top:1px dashed rgba(255,255,255,.3);padding-top:10px}
+.disc summary{cursor:pointer;font-weight:700;color:#E9B949}
+.disc details p,.disc details li{max-width:none;font-size:14.5px}
+.svgbox{border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:10px;margin:14px 0}
+.svgbox svg{width:100%;height:auto;display:block}
+.svgbox text{font-family:"PingFang TC","Microsoft JhengHei",sans-serif;fill:var(--ink)}
+tr.drop td{color:var(--mute);text-decoration:line-through;opacity:.75}
+tr.keep td{font-weight:700;color:var(--good)}
+.tl{display:flex;gap:0;margin:16px 0;overflow-x:auto;padding-bottom:6px}
+.tl .n{flex:1;min-width:110px;text-align:center;position:relative;padding-top:34px}
+.tl .n::before{content:"";position:absolute;left:0;right:0;top:12px;height:3px;background:var(--line)}
+.tl .n::after{content:"";position:absolute;left:50%;top:5px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--good);border:3px solid var(--paper)}
+.tl .n.cost::after{background:var(--badink)}
+.tl .n b{display:block;font-family:"IBM Plex Mono",monospace;font-size:19px} .tl .n.cost b{color:var(--badink)} .tl .n span{font-size:13px;color:var(--mute)}
+.calc{border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:16px 0;background:var(--paper)}
+.calc .fields{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:760px){.calc .fields{grid-template-columns:1fr 1fr}}
+.calc label{font-size:13px;color:var(--mute);display:block}
+.calc input{width:100%;font:inherit;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font-family:"IBM Plex Mono",monospace}
+.calc .res{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:12px}
+@media (max-width:760px){.calc .res{grid-template-columns:1fr 1fr}}
+.tf2{display:flex;gap:10px} .tf2 .opt{flex:1;justify-content:center;font-size:17px}
+.gtitle{margin:26px 0 4px;font-size:17px;color:var(--title)}
+.ck{margin:0;padding-left:1.2em}
+.calcq .stem table{min-width:0;width:auto;margin:8px 0}
+.calcq .stem table th,.calcq .stem table td{padding:4px 14px;text-align:center}
+.calcq .stem ol{padding-left:1.4em}
+.hint{font-size:13.5px;color:var(--mute)}
+.warn table{background:transparent;min-width:0}
+.warn td{border-color:var(--warnline)}
+.pillrow{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.gobtn{border:1px solid var(--accent);color:var(--accent-ink);background:var(--accent-soft);border-radius:9px;padding:6px 14px;font-weight:700}
+
+/* ---- dedicated slide-deck engine (教學簡報), fixed 16:9 cards, no sidebar ---- */
+.slidesdoc{background:transparent;border:none;border-radius:0;padding:0;box-shadow:none}
+.deckbar{position:sticky;top:0;z-index:6;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 4px 8px;background:var(--bg)}
+.djumps{display:flex;flex-wrap:wrap;gap:6px;flex:1;min-width:120px}
+.djump{border:0;border-radius:999px;padding:4px 12px;font-size:12.5px;font-weight:700;background:var(--zebra);color:var(--ink)}
+.djump.on{background:var(--accent);color:#fff}
+.dctl{display:flex;align-items:center;gap:6px;margin-left:auto}
+.dctl button{border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:4px 11px;font-size:14px;min-height:32px;color:var(--ink)}
+.dctl button:hover{border-color:var(--accent)}
+.dctl #dPrev,.dctl #dNext{font-size:19px;line-height:1;padding:2px 12px}
+.dcnt{font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono",monospace;font-size:13.5px;color:var(--mute);min-width:56px;text-align:center}
+.dprog{flex-basis:100%;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.dprog i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.deck{display:flex;flex-direction:column;align-items:center;gap:26px;padding:10px 0 30px}
+.slide{position:relative;width:min(100%,calc((100dvh - 210px) * 16 / 9));aspect-ratio:16/9;background:var(--paper);
+  border-radius:12px;box-shadow:0 1px 2px rgba(20,39,62,.08),0 10px 28px rgba(20,39,62,.10);overflow:hidden}
+.slide .in{position:absolute;inset:0;overflow-y:auto;padding:clamp(16px,3.4%,32px) clamp(20px,5.2%,50px) clamp(30px,5.5%,52px)}
+.slide .pg{position:absolute;right:16px;bottom:9px;font-size:12px;color:var(--mute);font-family:"IBM Plex Mono",monospace}
+.slidebody > :first-child{margin-top:0}
+.deck.one .slide{display:none}
+.deck.one .slide.on{display:block}
+@media (max-width:760px){
+  .slide{aspect-ratio:auto;width:100%;min-height:0}
+  .slide .in{position:static;overflow-y:visible}
+  .deck.one .slide{display:block}
+  .dctl #dFs{display:none}
+}
+
+.timerbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px;padding-top:10px;border-top:1px dashed rgba(255,255,255,.25)}
+.timerbar .tlbl{font-size:12.5px;font-weight:800;color:#E9B949;letter-spacing:.04em;margin-right:2px}
+.tchip{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:inherit;border-radius:999px;padding:4px 13px;font-size:13.5px;font-weight:700;font-family:"IBM Plex Mono",monospace}
+.tchip:hover{border-color:#E9B949}
+.tchip.active{background:#E9B949;color:#1A1A1A;border-color:#E9B949}
+.tdisp{display:none;font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:800;letter-spacing:.02em;min-width:64px;text-align:center;color:#E9B949}
+.tdisp.on{display:inline-block}
+.tdisp.low{color:#FF8C74;animation:tpulse 1s infinite}
+.tdisp.done{color:#FF6B54;animation:tpulse .5s infinite}
+@keyframes tpulse{0%,100%{opacity:1}50%{opacity:.35}}
+.tstop{display:none;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08);color:inherit;border-radius:999px;width:30px;height:30px;font-size:14px}
+.tstop.on{display:inline-flex;align-items:center;justify-content:center}
+.tstop:hover{border-color:#FF8C74;color:#FF8C74}
+@media (prefers-reduced-motion:reduce){.tdisp.low,.tdisp.done{animation:none}}
+
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:640px){.opts{grid-template-columns:1fr}}
+.opt{display:flex;align-items:center;gap:12px;padding:10px 30px 10px 12px;position:relative}
+.optletter{flex:none;width:32px;height:32px;border-radius:50%;background:var(--mute);opacity:.5;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;font-family:"IBM Plex Mono",monospace}
+.opttext{flex:1}
+.opt .optmark{position:absolute;top:8px;right:10px;width:auto;font-size:15px}
+.opt.correct .optletter{background:var(--good);opacity:1}
+.opt.wrong .optletter{background:var(--badink);opacity:1}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topin">
+  <span class="brand">教育經濟評估讀本</span>
+  <nav class="tabs" role="tablist">
+    <button class="tabbtn" data-tab="guide" role="tab" aria-selected="true">導讀</button>
+    <button class="tabbtn" data-tab="deck" role="tab" aria-selected="false">教學簡報</button>
+    <button class="tabbtn" data-tab="quiz" role="tab" aria-selected="false">測驗</button>
+  </nav>
+  <span class="spacer"></span>
+  <button class="themebtn" id="themeToggle" aria-label="切換亮色／暗色">◐</button>
+</div></header>
+<main>
+
+<section class="tabpanel" id="panel-guide" data-panel="guide">
+<div class="layout">
+  <aside class="side"><details class="tocbox" open><summary>目錄</summary><ol class="toc">
+    <li><a href="#g1">為什麼要讀這幾篇</a></li>
+    <li><a href="#g2">帶著五個問題讀</a></li>
+    <li><a href="#g3">逐篇導讀</a></li>
+    <li><a href="#g4">重要名詞（中英對照）</a></li>
+    <li><a href="#g5">讀完自己檢查</a></li>
+    <li><a href="#g6">書中數字的小提醒</a></li>
+  </ol></details></aside>
+  <article class="doc">
+    <header class="dh">
+      <span class="eyebrow">教育經濟學 | 第 4 週　教育經濟評估</span>
+      <h1>導讀：怎麼判斷一件教育投資「值不值得」</h1>
+      <p class="subl">必讀：Levin Ch.8、Ch.10　·　延伸：Levin Ch.1、McMahon (2009) Ch.3、Ch.4、Ch.5</p>
+    </header>
+
+    <h2 id="g1" class="h1">1. 為什麼要讀這幾篇</h2>
+    <p class="lead">前幾週我們一直在問「教育算不算一種投資」。這週換一個更實際的問題：<b>既然是投資，要怎麼算它划不划算？</b>教育經濟學給的工具有兩個，可以用買東西來想：</p>
+    <div class="grid2">
+      <div class="pcard ch8"><div class="tagrow"><span class="tag tag-p2"><i class="dot"></i>Ch.8</span></div><h4>成本效果分析（CE）：像在市場比價</h4><p>同樣是「買一單位成果」，哪個方案最便宜？效果不用換成錢，只能比出「誰比較划算」，答不了「值不值得」。</p></div>
+      <div class="pcard ch10"><div class="tagrow"><span class="tag tag-p4"><i class="dot"></i>Ch.10</span></div><h4>效益成本分析（BC）：像在問「這家店該不該開」</h4><p>把好處也換成錢、折現，看有沒有大過成本。能回答「值不值得」，但你得先能把效益換算成錢。</p></div>
+    </div>
+    <div class="callout"><p><b>老師指定 Ch.8 與 Ch.10，就是要你把這一組工具的兩端都拿在手上。</b>其他四篇是配角：Ch.1 是地圖，McMahon 三章是真實案例，告訴你這些工具用在高等教育上長什麼樣子、有哪些地方要小心。</p></div>
+    <div class="tw"><table><thead><tr><th>文獻</th><th>角色</th><th>它在這週幫你什麼</th></tr></thead><tbody>
+      <tr><td><span class="tag tag-p2"><i class="dot"></i>Ch.8</span><div class="dim" style="font-size:13px;margin-top:3px">成本效果分析</div></td><td style="white-space:nowrap"><b>必讀</b></td><td>學會用「成本 ÷ 效果」比較方案，並看懂符號、CE 平面、增量分析（ICER）這些陷阱。</td></tr>
+      <tr><td><span class="tag tag-p4"><i class="dot"></i>Ch.10</span><div class="dim" style="font-size:13px;margin-top:3px">效益成本分析</div></td><td style="white-space:nowrap"><b>必讀</b></td><td>學會 NPV、BC ratio、IRR 三個指標怎麼算、怎麼讀，以及每個指標會騙你的地方。</td></tr>
+      <tr><td><span class="tag tag-p3"><i class="dot"></i>Ch.1</span><div class="dim" style="font-size:13px;margin-top:3px">導論</div></td><td style="white-space:nowrap">延伸</td><td>一張地圖：CE、CU、BC 分別在哪一格，先看清楚全貌再進 Ch.8、Ch.10。</td></tr>
+      <tr><td><span class="tag tag-p1"><i class="dot"></i>McMahon Ch.3</span><div class="dim" style="font-size:13px;margin-top:3px">高教與經濟成長</div></td><td style="white-space:nowrap">延伸</td><td>IRR 版 BC 分析的真實案例：大學學位的社會報酬率、私人報酬率。</td></tr>
+      <tr><td><span class="tag tag-p1"><i class="dot"></i>McMahon Ch.4</span><div class="dim" style="font-size:13px;margin-top:3px">私人非市場效益</div></td><td style="white-space:nowrap">延伸</td><td>展示「效益換成錢」到底怎麼做：把健康、子女等好處貨幣化。</td></tr>
+      <tr><td><span class="tag tag-p1"><i class="dot"></i>McMahon Ch.5</span><div class="dim" style="font-size:13px;margin-top:3px">社會效益</div></td><td style="white-space:nowrap">延伸</td><td>把外溢到社會的效益算進來，並說明作者為什麼偏好 IRR、不用 NPV。</td></tr>
+    </tbody></table></div>
+    <div class="goal"><b>建議順序</b>時間夠：Ch.1（快翻）→ Ch.8 → Ch.10 → McMahon Ch.3 → Ch.4 → Ch.5。時間有限：先讀 Ch.8、Ch.10，再補 Ch.1 的 p.21 與 p.24，McMahon 三章只看下面的導讀，要引用時再回頭查頁碼。</div>
+
+    <h2 id="g2" class="h1">2. 帶著五個問題讀</h2>
+    <p>經濟評估的文章數字很多，讀到後面很容易只記得一堆 $。每讀到一個數字，就問自己這五件事，這也是課堂討論會用到的視角。</p>
+    <div class="tw"><table><thead><tr><th>問題</th><th>意思</th><th>在這週的文獻哪裡看得到</th></tr></thead><tbody>
+      <tr><td><b>① 成本算全了嗎？</b></td><td>資源有沒有漏？連帶成本、機會成本有沒有算進去？</td><td>Ch.8 City Connects：漏掉社區夥伴的成本，CE ratio 從 $11,720 變成 $3,950（p.182–183）；McMahon Ch.3 的「放棄所得」。</td></tr>
+      <tr><td><b>② 比的是什麼？</b></td><td>是相對於「照舊做法」的增量，還是整體平均？</td><td>Ch.8 §8.1 的兩個前提（p.166）；ICER 一步步爬階梯（p.179–181）。</td></tr>
+      <tr><td><b>③ 站在誰的立場？</b></td><td>學生、納稅人，還是整個社會？同一個方案，換觀點結論會變。</td><td>Ch.10 Perry 表分三個帳戶（p.230）；McMahon Ch.5 社會報酬率 vs 私人報酬率。</td></tr>
+      <tr><td><b>④ 成果怎麼衡量？能換成錢嗎？</b></td><td>用自然單位（分數、畢業人數）就是 CE；換成錢才是 BC。</td><td>Ch.1 p.21 的一句話差別；McMahon Ch.4 整章都在示範怎麼換算。</td></tr>
+      <tr><td><b>⑤ 這個數字穩嗎？能搬到別處嗎？</b></td><td>換個規模、換群學生、換折現率，結論還一樣嗎？</td><td>Ch.8 異質性（GEMS Math、Talent Search 九站，p.187–189）；Ch.10 IRR 對變動很敏感（p.227）。</td></tr>
+    </tbody></table></div>
+
+    <h2 id="g3" class="h1">3. 逐篇導讀：為什麼讀、怎麼讀</h2>
+
+    <div class="pcard ch8" style="border-color:var(--p2)"><div class="tagrow"><span class="tag tag-p2"><i class="dot"></i>Ch.8</span><span class="tag tag-p2">必讀</span><span class="dim">書頁 165–192</span></div>
+      <h4>Levin Ch.8　成本效果分析</h4>
+      <p><b>它在回答：</b>有好幾個方案都想達到同一個目標，哪個花最少的錢？</p>
+      <p><b>為什麼要讀：</b>CE ratio 是教育政策最常見的「比價工具」。之後你在文獻或政策簡報看到「每提升 1 個標準差要花多少錢」，讀的就是這章的邏輯。</p>
+      <p><b>怎麼讀：</b></p>
+      <ul class="lst"><li>先讀 8.1 與 Table 8.1（p.166–168），抓住「CE ratio ＝ 買一單位成果的價格」。</li>
+      <li>8.3、8.4 是全章重點（p.173–183）：怎麼詮釋、正負號陷阱、CE 平面、增量分析（ICER）。建議把 Table 8.4 自己算一遍。</li>
+      <li>8.5 證據（Table 8.6、Example 8.2、Table 8.7、Table 8.8）不用逐格讀，抓作者的結論：不排名、最有效不等於最划算、平均會遮蔽差異。</li>
+      <li>章末練習題 3（p.192）是 ICER 與支配的題目，值得做。</li></ul>
+      <p><b>盯住這五點：</b></p>
+      <ul class="lst"><li>CE ratio 是「效率」指標，不是所需預算，也不保證效果（p.176）。</li><li>CE 分析回答不了「值不值得」，那要靠願付價格或 BC 分析（p.175、179、181）。</li><li>比值的符號要先檢查：−$500 可能是最好，也可能是最差（Table 8.3）。</li><li>漏算連帶成本會嚴重低估（p.182–183）。</li><li>平均 CE 會遮蔽異質性（p.187–189）。</li></ul>
+      <div class="callout"><p><b>小提醒：</b>作者假設成本與效果都已精確估計；不確定性留到 Ch.11（p.166）。讀這章時先不用擔心「估得準不準」，專心學怎麼比。</p></div>
+    </div>
+
+    <div class="pcard ch10" style="border-color:var(--p4)"><div class="tagrow"><span class="tag tag-p4"><i class="dot"></i>Ch.10</span><span class="tag tag-p4">必讀</span><span class="dim">書頁 221–243</span></div>
+      <h4>Levin Ch.10　效益成本分析</h4>
+      <p><b>它在回答：</b>這筆教育投資本身，好處有沒有大過成本？</p>
+      <p><b>為什麼要讀：</b>要說服財政部門、立委或校董會「這值得投」，最後都得走到 BC 分析。這章把 NPV、BC ratio、IRR 三個指標和各自的陷阱一次講完。</p>
+      <p><b>怎麼讀：</b></p>
+      <ul class="lst"><li>10.1（p.222–229）用「成人識字方案」示範所有指標。<b>請拿計算機跟著算一遍</b>（或用「教學簡報」分頁裡的試算器）：效益現值 $557、NPV $257、BC ratio 1.86、IRR 34.9%，回本點在第三年。</li>
+      <li>10.2（p.229–232）不談公式，談「怎麼用才不會被騙」：觀點、分配、研究設計差異、統計顯著性。</li>
+      <li>10.3 案例（p.233–239）：先看 Perry（Example 10.1）與 Chicago CPC（Table 10.2）的三個帳戶；再看青少年方案（NGYCP）；最後務必看 10.3.4 welfare-to-work，它說明「教育投資不一定 NPV 為正」。</li>
+      <li>Example 10.2（p.234–236）是「多讀一年書的報酬率」，直接連到 McMahon Ch.3，順便讀五項批評。</li></ul>
+      <p><b>盯住這五點：</b></p>
+      <ul class="lst"><li>NPV 受規模影響，BC ratio 的「每 $1」是簡化說法，IRR 對流量很敏感。</li><li>三個指標互補，書中建議一起報（p.229）。</li><li>觀點要寫清楚：社會、納稅人、參與者的答案不一樣（p.230–231）。</li><li>統計顯著性不是納入效益的門檻，BC 真正要檢定的是「NPV 是否大於零」（p.232）。</li><li>多數但不是所有教育投資的 NPV 為正（p.239–240）。</li></ul>
+    </div>
+
+    <div class="grid2">
+      <div class="pcard"><div class="tagrow"><span class="tag tag-p3"><i class="dot"></i>Ch.1</span><span class="dim">延伸 · 書頁 1–28</span></div><h4>Levin Ch.1　導論</h4>
+        <p><b>當地圖看，不用細讀。</b>只看三處：Table 1.1（各類分析比較）、p.21（CE 與 BC 的一句話差別）、p.24（生產效率 vs 配置效率）。</p>
+        <p><b>觀點：</b>CE 問「要達成 X，哪個方案最便宜」；BC 問「該不該投資能產出 X 的方案 Y」（p.21）。Table 1.1 列出五種：成本分析、成本可行性、CE、CU、BC；成本都用同一套「成分法」算（p.24）。</p></div>
+      <div class="pcard"><div class="tagrow"><span class="tag tag-p1"><i class="dot"></i>McMahon Ch.3</span><span class="dim">延伸 · 書頁 69–117</span></div><h4>McMahon Ch.3　高教與經濟成長</h4>
+        <p><b>一個真實的 IRR 版 BC 分析：</b>成本（機構成本＋放棄所得）與效益（畢業後多賺的錢）折現，求報酬率，與 10% 的長期基準比（p.93–98）。</p>
+        <p><b>怎麼讀：</b>抓四件事：技能赤字（1980–2007 年大學畢業生實質薪資約 +48%，p.72–76）；真正的投資成本含放棄所得（p.84–85）；社會與私人報酬率定義（p.93–94）；「過度教育」的幾種批評與反駁（p.109–115）。</p></div>
+      <div class="pcard"><div class="tagrow"><span class="tag tag-p1"><i class="dot"></i>McMahon Ch.4</span><span class="dim">延伸 · 書頁 118–180</span></div><h4>McMahon Ch.4　私人非市場效益</h4>
+        <p><b>示範「效益怎麼換成錢」：</b>健康、子女、壽命等好處，怎麼從迴歸係數變成 $ 數字。學士學位的私人非市場效益約 $38,080（2007 年幣值），約為所得增量的 122%（p.173）。</p>
+        <p><b>怎麼讀：</b>讀方法，不用背每項數字：為什麼要控制所得避免重複計算（p.122–123）、「所得等值」的換算（p.160）、作者自己說偏保守（p.162、173）。</p></div>
+      <div class="pcard"><div class="tagrow"><span class="tag tag-p1"><i class="dot"></i>McMahon Ch.5</span><span class="dim">延伸 · 書頁 181–255</span></div><h4>McMahon Ch.5　社會效益與政策意涵</h4>
+        <p><b>與 NPV／BCR／IRR 銜接最直接的一章：</b>p.188 明說用 IRR、不用 NPV，並舉 4% 與 6% 折現率下 NPV 差很多的例子，對照 Ch.10 的折現率與敏感度；Table 5.1 讓你看到社會與私人觀點不同。</p>
+        <p><b>怎麼讀：</b>三種估算社會效益的方法（p.182–183）；IRR vs NPV 的論證（p.188）；新的社會報酬率（p.248–252）。中間實證段落只看標題與結論。</p></div>
+    </div>
+
+    <h2 id="g4" class="h1">4. 重要名詞（中英對照）</h2>
+    <p>依你會遇到的順序分組，可以篩選；文章裡有<span class="term" style="cursor:default">黃色虛線底線</span>的詞可以點，會跳到這裡。「出處」是書上頁碼；標（Ch.9）的是本週沒讀、但 Ch.10 會用到的概念。</p>
+    <div class="gfilter" id="gfilter"><button class="gf on" data-f="all">全部</button><button class="gf" data-f="0">Ch.1 觀念</button><button class="gf" data-f="1">Ch.8 CE</button><button class="gf" data-f="2">Ch.10 BC</button><button class="gf" data-f="3">McMahon</button></div>
+    <div class="glossgrid" id="glossGrid"></div>
+
+    <h2 id="g5" class="h1">5. 讀完自己檢查一下</h2>
+    <p>不看書，試著用自己的話回答下面五題。答得出來，代表讀得夠了；卡住的那題就是要回頭補的地方。想逐題對答案，去「測驗」分頁。</p>
+    <ol class="lst">
+      <li>CE ratio 是什麼？為什麼它是「效率」指標，不是「預算」？</li>
+      <li>為什麼 −$500 的 CE ratio 有時是最好、有時是最差？</li>
+      <li>NPV、BC ratio、IRR 各自最容易被誤讀的地方是什麼？</li>
+      <li>Perry 方案的「NPV 為正」，是對誰為正？</li>
+      <li>為什麼作者說「不是所有教育投資的 NPV 都為正」？舉一個書中的例子。</li>
+    </ol>
+    <div class="pillrow"><button class="gobtn" data-tab-go="quiz">前往測驗</button><button class="gobtn" data-tab-go="deck">前往教學簡報</button></div>
+
+    <h2 id="g6" class="h1">6. 書中數字的小提醒</h2>
+    <div class="warn"><span class="wh">如果你算出來跟書不一樣，不一定是你算錯</span>
+      <table><thead><tr><th>章</th><th>狀況</th></tr></thead><tbody>
+      <tr><td>Ch.8</td><td>p.181 正文寫 S6 的 CER 是 $3,840 ÷ 0.027 ＝ $142,220，但 Table 8.4 的 S6 效果是 0.190。</td></tr>
+      <tr><td>Ch.8</td><td>Table 8.4 的 S8 ICER 印 $9,500，逐列驗算約 $5,280；不過最後留下的階梯（$17,100、$51,140）與書相符。</td></tr>
+      <tr><td>Ch.8</td><td>p.188 寫高中完成 CE 最高 $149,800，但 Table 8.8 的 TX6 是 $161,420。Fig 8.2 標題寫八站，內文是九站。</td></tr>
+      <tr><td>Ch.8</td><td>Talent Search 有兩組數字：Table 8.2 是 +8.2 個百分點、$3,900；Example 8.2 是 +10.8 個百分點、$3,590。不要混用。</td></tr>
+      <tr><td>Ch.10</td><td>Table 10.1 年度標示與 p.223 的折現算式差 1 年；p.228 的 $279 逐列驗算是 $287，但「第三年回本」的結論不變。</td></tr>
+      <tr><td>Ch.10</td><td>p.224「10 年後 $867 折現為 $557」不成立（約 $645）；p.227「12 年 IRR 降為 13%」要是總效益 $600 攤 12 年才成立。</td></tr>
+      <tr><td>Ch.10</td><td>Table 10.2 的 BC ratio 印 7.1、10.8，逐項驗算 7.03、10.67，可能是進位。習題 1b、習題 3 書中沒說清楚，待確認。</td></tr>
+      <tr><td>其他</td><td>McMahon 學士窄社會率，Ch.3 寫 14%、Ch.5 寫 15%；Ch.5 直接社會效益 $16,801 與 $16,081 兩處不一致。</td></tr>
+      </tbody></table>
+      <p style="margin-top:8px">PDF 都是掃描檔，數字為 OCR 後對圖檢查。正式引用請回頭對照紙本頁碼。</p></div>
+  </article>
+</div>
+</section>
+
+<section class="tabpanel" id="panel-deck" data-panel="deck" hidden>
+<div class="deckbar">
+  <div class="djumps" id="djumps"><button type="button" class="djump" data-i="1">今天</button><button type="button" class="djump" data-i="2">①</button><button type="button" class="djump" data-i="5">②</button><button type="button" class="djump" data-i="8">③</button><button type="button" class="djump" data-i="12">④</button><button type="button" class="djump" data-i="16">⑤</button><button type="button" class="djump" data-i="20">⑥</button><button type="button" class="djump" data-i="24">⑦</button><button type="button" class="djump" data-i="29">收束</button></div>
+  <div class="dctl">
+    <button type="button" id="dPrev" aria-label="上一張">&#8249;</button>
+    <span class="dcnt"><span id="dCur">1</span> / <span id="dTot">1</span></span>
+    <button type="button" id="dNext" aria-label="下一張">&#8250;</button>
+    <button type="button" id="dMode">捲動瀏覽</button>
+    <button type="button" id="dFs" aria-label="全螢幕">&#9974;</button>
+  </div>
+  <div class="dprog"><i id="dBar"></i></div>
+</div>
+<div class="deck one" id="deck"><section class="slide on" data-i="0"><div class="in">
+<span class="eyebrow">教學簡報 | 講一段、討論一段</span>
+<h1 style="margin:8px 0 12px;font-size:clamp(22px,3.4vw,34px);color:var(--title,var(--ink));font-weight:900">這筆教育投資，值不值得？</h1>
+<p class="subl">Levin Ch.8 成本效果分析 × Ch.10 效益成本分析。全程 7 輪「講 → 討論」，討論用 ORID 提問加 1-2-4-all 分組。黃色虛線底線的詞可以點，會跳到「導讀」分頁的名詞表。圖表為依書中數字重繪，不是原書的圖。</p>
+</div><div class="pg">1</div></section><section class="slide" data-i="1"><div class="in">
+<h2 id="d0" class="h1">今天怎麼上</h2>
+    <div class="grid2">
+      <div class="pcard"><h4>兩個工具</h4>
+        <p><b>ORID</b>：從事實走到決定。<b>O</b> 看到什麼 → <b>R</b> 有什麼反應 → <b>I</b> 為什麼、代表什麼 → <b>D</b> 所以怎麼做。順序不能跳。</p>
+        <p><b>1-2-4-all</b>（7 人版）：<b>1</b> 自己想 1 分鐘 → <b>2</b> 兩人交換 3 分鐘（2＋2＋3） → <b>4</b> 併成兩組 4 分鐘（4＋3）→ <b>all</b> 全班 4–5 分鐘，每組只報「最有料的一句」。</p>
+        <p class="hint">合體方式：O、R 用個人書寫帶過；I 才跑完整 1-2-4-all；D 全班收斂。</p></div>
+      <div class="pcard"><h4>七輪節奏（約 3 小時，可調）</h4>
+        <ol class="lst" style="margin:0">
+          <li>成果的價格　→ 最貴的方案會不會最划算？</li>
+          <li>效率，不是預算　→ 每人 $47,260 算貴嗎？</li>
+          <li>符號・CE 平面・ICER　→ 花更多錢，停在哪一格？</li>
+          <li>連帶成本・異質性・證據　→ 誰被平均掉了？</li>
+          <li>從 CE 到 BC　→ 一個方案，三種故事</li>
+          <li>指標陷阱・觀點　→ Perry 的好處落在誰身上？</li>
+          <li>案例對照　→ 學前、青少年、福利受領者，錢該投哪？</li>
+        </ol><p class="hint">時間不夠：討論③與⑦擇一刪。</p></div>
+    </div>
+
+</div><div class="pg">2</div></section><section class="slide" data-i="2"><div class="in"><div class="round ch8" id="a1"><span class="lecbadge">講 ①</span><h2>CE ratio ＝ 買一單位成果的價格</h2></div>
+<p class="lead">CE 分析是一種<b>比較性</b>的練習：拿幾個方案互相比，看誰達成同一個目標最便宜。（p.165）</p>
+<div class="formula">CE ratio ＝ 成本差 ÷ 效果差 ＝ (C<sub>T</sub> − C<sub>C</sub>) ÷ (E<sub>T</sub> − E<sub>C</sub>)<small>決策規則：選「每單位效果成本最低」的方案。「the ratio is the price of an outcome」（p.167）</small></div>
+<div class="grid4">
+  <div class="pcard ch8"><h4>① 成本要對得上效果</h4><p style="font-size:14.5px">算的是「產生這個效果的所有資源」，包含連帶成本。</p></div>
+  <div class="pcard ch8"><h4>② 都要是增量</h4><p style="font-size:14.5px">相對於 business as usual（照舊做法）多花多少、多得多少。</p></div>
+  <div class="pcard ch8"><h4>③ 效果要單一</h4><p style="font-size:14.5px">單一（univariate）且用有效方法辨識；怎麼選見 Ch.7。</p></div>
+  <div class="pcard ch8"><h4>④ 單位要一致</h4><p style="font-size:14.5px">成本與效果用同一個單位，例如都是「每位學生」。</p></div>
+</div>
+<h3 class="h2">案例：四種提升數學的方案（Table 8.1，p.168）</h3>
+</div><div class="pg">3</div></section><section class="slide" data-i="3"><div class="in"><div class="bars ch8"><h5>每提升 1 個標準差的數學成績，要花多少錢（每生每年，2015 美元）</h5><div class="brow"><div>跨齡輔導</div><div class="btrack"><div class="bfill hi" style="width:10.8%"></div><span class="bval">$630</span></div></div><div class="brow"><div>減班 30→25</div><div class="btrack"><div class="bfill" style="width:44.2%"></div><span class="bval">$2,590</span></div></div><div class="brow"><div>CAI 電腦輔助</div><div class="btrack"><div class="bfill" style="width:48.8%"></div><span class="bval">$2,860</span></div></div><div class="brow"><div>延長上學日</div><div class="btrack"><div class="bfill" style="width:100.0%"></div><span class="bval">$5,860</span></div></div></div><div class="tw"><table><thead><tr><th>方案</th><th>每生成本</th><th>數學效果</th><th>數學 CE</th><th>閱讀效果</th><th>閱讀 CE</th></tr></thead><tbody>
+<tr><td>延長上學日（+1 小時）</td><td>$176</td><td>0.03 SD</td><td>$5,860</td><td>0.07 SD</td><td>$2,510</td></tr>
+<tr><td>電腦輔助教學 CAI</td><td>$343</td><td>0.12 SD</td><td>$2,860</td><td>0.23 SD</td><td>$1,490</td></tr>
+<tr><td><b>跨齡輔導</b>（五六年級教低年級）</td><td><b>$611</b></td><td><b>0.97 SD</b></td><td><b>$630</b></td><td>0.48 SD</td><td>$1,270</td></tr>
+<tr><td>班級規模 30→25</td><td>$181</td><td>0.07 SD</td><td>$2,590</td><td>0.04 SD</td><td>$4,540</td></tr></tbody></table></div>
+<div class="callout"><p><b>看兩個地方：</b>① 成本最高（$611）的跨齡輔導，數學 CE ratio 最低（$630），只需要延長上學日約九分之一的資源。② 同一批方案，閱讀排序不同：減班最不划算（$4,540）。「貴」不等於「不划算」。</p></div>
+</div><div class="pg">4</div></section><section class="slide" data-i="4"><div class="in"><div class="disc ch8" id="disc①"><h3><span class="disbadge">討論 ①</span>最貴的方案，會不會反而最划算？</h3><p class="dsub">看 Table 8.1　·　約 12 分鐘，重點在 I 題</p><div class="orid"><div class="l">O</div><p class="t"><small>事實　Objective</small>這張表裡，四個方案各自的成本、效果、CE ratio 是多少？哪個最貴？哪個效果最大？</p><div class="l">R</div><p class="t"><small>感受　Reflective</small>哪一個數字讓你意外、或讓你有點不舒服？</p><div class="l">I</div><p class="t"><small>意義　Interpretive</small>為什麼「最貴」的方案，「每單位效果的價格」卻最低？同一組方案在數學和閱讀排序不同，代表什麼？</p><div class="l">D</div><p class="t"><small>決定　Decisional</small>如果你是校長或教育局的預算負責人，這張表會改變你明天的決定嗎？你還想多知道什麼再決定？</p></div><div class="flow"><div class="st"><b>1</b>自己寫下 O、R（1 分）</div><div class="st"><b>2</b>兩人交換 O、R（3 分）</div><div class="st"><b>4</b>I 題四人組，找共識與分歧（4 分）</div><div class="st"><b>all</b>每組一句最有料的話；D 由老師收斂（4 分）</div></div><div class="timerbar"><span class="tlbl">計時</span><button type="button" class="tchip" data-secs="60">1 分</button><button type="button" class="tchip" data-secs="180">3 分</button><button type="button" class="tchip" data-secs="240">4 分</button><span class="tdisp">--:--</span><button type="button" class="tstop" aria-label="停止計時">停</button></div>
+<details><summary>老師的引導腳本</summary><p><b>O（2 分）：</b>只講「看到什麼」，先不評論。若有人直接說「跨齡輔導最好」，請他回到數字：$611、0.97、$630。</p>
+<p><b>R（2 分）：</b>不追問對錯，收集感受就好，例如「意外」「不太相信 0.97 這麼大」。</p>
+<p><b>I（跑 1-2-4-all，約 8 分）：</b>關鍵洞見是 CE ratio ＝ 成本 ÷ 效果，效果夠大時，分母大就能把價格拉低；同時教育目標（數學 vs 閱讀）不同，最佳解也不同。</p>
+<p><b>D（3 分）：</b>讓學生說出「我還想知道…」：成果能不能複製、規模放大會不會稀釋、老師負擔等。這會自然銜接下一輪。</p>
+<p><b>預期答案：</b>貴 ≠ 不划算；便宜也不一定划算（減班 $181，但閱讀 $4,540）。</p></details></div></div><div class="pg">5</div></section><section class="slide" data-i="5"><div class="in"><div class="round ch8" id="a2"><span class="lecbadge">講 ②</span><h2>CE ratio 是「效率」指標，不是預算</h2></div>
+<p class="lead">Talent Search：協助低收入學生完成高中、上大學的多年期方案（Table 8.2，p.173–176）。</p>
+<div class="grid4"><div class="stat"><b>7,146</b><span>參與者</span></div><div class="stat"><b>$3,900</b><span>每人現值成本</span></div><div class="stat"><b>590</b><span>新增高中畢業生</span></div><div class="stat"><b>768</b><span>新增大學入學者</span></div></div>
+<div class="grid2">
+  <div class="pcard ch8"><h4 class="mono" style="font-size:28px">$47,260</h4><p>每多一位高中畢業生的成本（每多一位大學入學者：$36,310）。對照：公立四年高中每生約 $45,000。</p></div>
+  <div class="pcard"><h4>怎麼讀這個數字？</h4><ul class="lst" style="margin:0"><li>它<b>不代表</b>「需要追加 $47,260」，也不保證「一定多一位畢業生」。</li><li>書中舉例：每單位 $10,000 只表示比 $20,000 的方案「效率高一倍」（p.176）。</li><li>值不值得，要靠願付價格或 BC 分析（p.175、179）。</li></ul></div>
+</div>
+</div><div class="pg">6</div></section><section class="slide" data-i="6"><div class="in">
+<div class="warn"><span class="wh">別混用兩組 Talent Search 數字</span><p>Table 8.2（Bowden 資料）：+8.2 個百分點、每人 $3,900。Example 8.2（Hollands 資料）：+10.8 個百分點、每人 $3,590。</p></div>
+<h3 class="h2">CE 的四個近親（§8.2，p.169–173）</h3>
+<div class="grid2">
+  <div class="pcard"><h4><button class="term" data-goto="cu">CU 成本效用比</button>　C ÷ 效用分數</h4><p style="font-size:14.5px">把多個結果合成「效用」分數再除成本。例：特教三種安置，CU 比 $799／$375／$374。</p></div>
+  <div class="pcard"><h4><button class="term" data-goto="ecr">ECR 效果成本比</button>　E ÷ C</h4><p style="font-size:14.5px">每 $100,000 買到多少效果。結論與 CE 相同，作者建議統一報 CE ratio。</p></div>
+  <div class="pcard"><h4>期望值 CE　C ÷ E(效果)</h4><p style="font-size:14.5px">結果不確定時用期望值。例：輟學防治 A $2,106 vs B（期望 71.8 人）$1,394。</p></div>
+  <div class="pcard"><h4>混合 CE（Hybrid）　(C − B) ÷ E</h4><p style="font-size:14.5px">分子先扣掉已能換成錢的效益。合法但少用：可扣哪些效益顯得隨意，分子也不是方案成本。</p></div>
+</div>
+</div><div class="pg">7</div></section><section class="slide" data-i="7"><div class="in"><div class="disc ch8" id="disc②"><h3><span class="disbadge">討論 ②</span>每人 $47,260，算貴嗎？</h3><p class="dsub">看 Talent Search　·　約 12 分鐘</p><div class="orid"><div class="l">O</div><p class="t"><small>事實　Objective</small>關於 Talent Search，我們看到哪些數字？（$47,260、$45,000、每人現值成本 $3,900…）</p><div class="l">R</div><p class="t"><small>感受　Reflective</small>看到「大約等於再讀一次高中的錢」，你第一個反應是什麼？</p><div class="l">I</div><p class="t"><small>意義　Interpretive</small>誰有資格決定「多少算貴」？為什麼 CE ratio 自己回答不了這題？（提示：書中提到的「願付價格」與 BC 分析）</p><div class="l">D</div><p class="t"><small>決定　Decisional</small>如果你是資助者，你會設什麼門檻？還需要補什麼資料才能決定？</p></div><div class="flow"><div class="st"><b>1</b>各自寫下 O、R</div><div class="st"><b>2</b>兩人交換 O、R</div><div class="st"><b>4</b>I 題四人組：誰決定貴不貴？</div><div class="st"><b>all</b>全班：把「門檻」寫在白板</div></div><div class="timerbar"><span class="tlbl">計時</span><button type="button" class="tchip" data-secs="60">1 分</button><button type="button" class="tchip" data-secs="180">3 分</button><button type="button" class="tchip" data-secs="240">4 分</button><span class="tdisp">--:--</span><button type="button" class="tstop" aria-label="停止計時">停</button></div>
+<details><summary>老師的引導腳本</summary><p><b>O：</b>確認大家看到同一批數字，也包括「$100,000 是書上『假設』每位新畢業生願付的價格（Fig 8.2，p.179）」，不是實測值。</p>
+<p><b>R：</b>可能有人說「還好」「太貴」，兩種都接住，不評分。</p>
+<p><b>I：</b>核心是「CE 只給效率、不給價值判斷」。要判斷值不值得，要有外部參考（績效撥款公式、其他方案、願付價格，p.175）或改用 BC 分析（Ch.10）。</p>
+<p><b>D：</b>把學生說的門檻寫上白板，等一下 Ch.10 回頭對照：BC 分析是不是能替這個門檻找到依據？</p></details></div></div><div class="pg">8</div></section><section class="slide" data-i="8"><div class="in"><div class="round ch8" id="a3"><span class="lecbadge">講 ③</span><h2>先看正負號，再看比值：CE 平面與 ICER</h2></div>
+<div class="tw"><table><thead><tr><th></th><th>增量成本</th><th>增量效果</th><th>CE ratio</th><th>白話</th></tr></thead><tbody>
+<tr><td><b>A</b></td><td>−$1,000</td><td>＋2</td><td><b style="color:var(--badink)">−$500</b></td><td>省錢又有效（最好）</td></tr>
+<tr><td><b>B</b></td><td>＋$1,000</td><td>−2</td><td><b style="color:var(--badink)">−$500</b></td><td>花錢還更糟（最差）</td></tr>
+<tr><td><b>C</b></td><td>＋$1,000</td><td>＋2</td><td><b style="color:var(--good)">＋$500</b></td><td>貴，但有效（要取捨）</td></tr>
+<tr><td><b>D</b></td><td>−$1,000</td><td>−2</td><td><b style="color:var(--good)">＋$500</b></td><td>便宜，但變差</td></tr></tbody></table></div>
+<p>A 和 B 的比值一樣，意義天差地別；C 和 D 也是。效果為零時比值無定義，比值在零附近不連續、不對稱，所以<b>先檢查符號</b>。（Table 8.3，p.176–177）</p>
+</div><div class="pg">9</div></section><section class="slide" data-i="9"><div class="in">
+<h3 class="h2">CE 平面：把方案放進四個象限</h3>
+<div class="svgbox"><svg viewBox="0 0 640 330" role="img" aria-label="CE 平面四象限圖">
+<rect x="60" y="20" width="270" height="140" fill="#C8492F" opacity=".14"/><rect x="330" y="20" width="270" height="140" fill="#A96F00" opacity=".16"/>
+<rect x="60" y="160" width="270" height="140" fill="#888" opacity=".13"/><rect x="330" y="160" width="270" height="140" fill="#1E7A5C" opacity=".18"/>
+<text x="76" y="46" font-size="17" font-weight="700">B 劣勢</text><text x="76" y="68" font-size="13">更貴、更差：直接排除</text>
+<text x="346" y="46" font-size="17" font-weight="700">C 取捨</text><text x="346" y="68" font-size="13">更貴、更有效：看願付價格</text>
+<text x="76" y="186" font-size="17" font-weight="700">D</text><text x="76" y="208" font-size="13">更省、更差：通常排除（do no harm）</text>
+<text x="346" y="186" font-size="17" font-weight="700">A 絕對優勢</text><text x="346" y="208" font-size="13">更省、更有效：恆可接受</text>
+<line x1="330" y1="160" x2="590" y2="34" stroke="#C8492F" stroke-width="2.5" stroke-dasharray="7 5"/>
+<text x="470" y="112" font-size="12.5" fill="#C8492F" style="fill:#C8492F" font-weight="700">願付價格線</text>
+<line x1="60" y1="160" x2="600" y2="160" stroke="currentColor" stroke-width="1.2" opacity=".55"/><line x1="330" y1="20" x2="330" y2="300" stroke="currentColor" stroke-width="1.2" opacity=".55"/>
+<text x="18" y="24" font-size="13">成本 ↑</text><text x="548" y="322" font-size="13">效果 →</text></svg></div>
+<ul class="lst"><li>願付價格線：例如每多一位高中畢業生願意付 $100,000（書中的假設）。線的一側可接受，另一側拒絕；CE 分析自己決定不了這條線。</li>
+<li>Talent Search 九個站：八個落在 C，一個落在 B（成本為正、效果為負）。（Fig 8.2，p.178；圖標題寫 Eight Sites，內文為九站）</li></ul>
+</div><div class="pg">10</div></section><section class="slide" data-i="10"><div class="in">
+<h3 class="h2">ICER：一步步往上爬階梯（Table 8.4，p.179–181）</h3>
+<ol class="lst"><li>依成本由低到高排列。</li><li>刪掉「更貴又更沒效」的（strictly dominated）：S5、S3、S2、S4。</li><li>每個方案跟「上一格」比，算 ICER ＝ ΔC ÷ ΔE。</li><li>ICER 不升反降 → 前面那個被弱支配，刪掉重算。</li></ol>
+<div class="tw"><table><thead><tr><th>方案</th><th>成本</th><th>成績增益</th><th>ICER（對上一列）</th><th>結果</th></tr></thead><tbody>
+<tr class="drop"><td>S9</td><td>$2,520</td><td>0.112</td><td>22,500</td><td>弱支配，刪</td></tr>
+<tr class="drop"><td>S7</td><td>$2,820</td><td>0.140</td><td>10,714</td><td>弱支配，刪</td></tr>
+<tr class="keep"><td>S8</td><td>$3,010</td><td>0.176</td><td>5,278</td><td>留下</td></tr>
+<tr class="drop"><td>S6</td><td>$3,840</td><td>0.190</td><td>59,286</td><td>弱支配，刪</td></tr>
+<tr class="keep"><td>S1</td><td>$4,800</td><td>0.211</td><td>45,714</td><td>留下</td></tr></tbody></table></div>
+<div class="callout"><p><b>最後的階梯（相對「無介入」）：</b>無介入 → S8：<b>$17,100</b> ／單位　→　S1：再多 <b>$51,140</b> ／單位。ICER 只呈現取捨，不替人決定該停在哪一格：「CE analysis cannot determine whether the policymaker should be willing to pay these amounts」（p.181）。</p></div>
+<div class="warn"><span class="wh">書中數字提醒</span><p>表列 S8 的 ICER 印 $9,500，逐列驗算是 $5,278；p.181 正文的「S6 ＝ $3,840 ÷ 0.027 ＝ $142,220」與表中 0.190 不符。上表 ICER 欄是我們逐列重算的，最終階梯與書相符。</p></div>
+</div><div class="pg">11</div></section><section class="slide" data-i="11"><div class="in"><div class="disc ch8" id="disc③"><h3><span class="disbadge">討論 ③</span>花更多錢，買更多成績：停在哪一格？</h3><p class="dsub">手算 ICER　·　約 15 分鐘（含試算）</p><div class="orid"><div class="l">O</div><p class="t"><small>事實　Objective</small>先各自試算（1 分鐘）：Table 8.4 中哪些方案會被劃掉？最後留下哪幾個？</p><div class="l">R</div><p class="t"><small>感受　Reflective</small>哪個被劃掉的方案讓你覺得「可惜」？為什麼？</p><div class="l">I</div><p class="t"><small>意義　Interpretive</small>從 $17,100 走到 $51,140，每多買一點成績的「價格」越來越貴——這代表什麼？CE 分析能不能告訴我們該停在哪一階？</p><div class="l">D</div><p class="t"><small>決定　Decisional</small>換成你自己的單位：你的預算大概落在這個階梯的哪一格？你會停在哪？</p></div><div class="flow"><div class="st"><b>1</b>紙上劃掉方案，自己試算</div><div class="st"><b>2</b>兩人核對：留下誰、為什麼</div><div class="st"><b>4</b>I 題四人組：該停在哪？</div><div class="st"><b>all</b>全班：停在哪一格？誰決定？</div></div><div class="timerbar"><span class="tlbl">計時</span><button type="button" class="tchip" data-secs="60">1 分</button><button type="button" class="tchip" data-secs="240">4 分</button><button type="button" class="tchip" data-secs="300">5 分</button><span class="tdisp">--:--</span><button type="button" class="tstop" aria-label="停止計時">停</button></div>
+<details><summary>老師的引導腳本</summary><p><b>O：</b>這一輪的 O 就是「試算結果」：答案是 S8 與 S1。先看 S9→S7→S8：ICER 22,500 → 10,714 → 5,278，「越爬越便宜」不合理，代表 S9、S7 被 S8 弱支配。S6 同理。</p>
+<p><b>R：</b>有人會覺得 S9 這種便宜的很可惜——那正是重點：便宜不等於划算。</p>
+<p><b>I：</b>關鍵句是書中的「CE analysis cannot determine whether the policymaker should be willing to pay these amounts」（p.181）。</p>
+<p><b>D：</b>讓學生說出停在哪一格的理由（預算、政治、公平）。若時間不夠，這一輪可省略。</p></details></div></div><div class="pg">12</div></section><section class="slide" data-i="12"><div class="in"><div class="round ch8" id="a4"><span class="lecbadge">講 ④</span><h2>別漏連帶成本、別被平均騙了、證據要小心讀</h2></div><h3 class="h2">連帶成本（induced costs）：CE ratio 差了三倍（Table 8.5，p.182–183）</h3><div class="bars ch8"><h5>City Connects：每提升 1 個標準差的 CE ratio（現值，2013 美元）</h5><div class="brow"><div>只算學校核心成本</div><div class="btrack"><div class="bfill" style="width:33.7%"></div><span class="bval">$3,950</span></div></div><div class="brow"><div>含社區夥伴的連帶成本</div><div class="btrack"><div class="bfill hi" style="width:100.0%"></div><span class="bval">$11,720</span></div></div><p class=hint style=margin:8px 0 0>成本拆解：學校核心 $1,540 ＋ 社區夥伴服務 $3,030 ＝ $4,570 每生；八年級效果 ＋0.39 SD。原則：CE ratio 要用「產生效果的所有資源」來算。</p></div></div><div class="pg">13</div></section><section class="slide" data-i="13"><div class="in"><h3 class="h2">平均會遮蔽異質性（Table 8.7–8.8，p.187–189）</h3><div class="bars ch8"><h5>每多 1 個原始分數的成本（依家庭 SES 分組，2015 美元）</h5><div class="legend"><span><i style="background:var(--mute)"></i>Text Math（傳統）</span><span><i style="background:var(--c)"></i>GEMS Math（個別化）</span></div><div class="brow"><div>高 SES</div><div><div class="btrack" style="margin-bottom:3px"><div class="bfill" style="width:22.9%;background:var(--mute)"></div><span class="bval">Text $22</span></div><div class="btrack"><div class="bfill hi" style="width:28.1%"></div><span class="bval">GEMS $27</span></div></div></div><div class="brow"><div>中高</div><div><div class="btrack" style="margin-bottom:3px"><div class="bfill" style="width:28.1%;background:var(--mute)"></div><span class="bval">Text $27</span></div><div class="btrack"><div class="bfill hi" style="width:30.2%"></div><span class="bval">GEMS $29</span></div></div></div><div class="brow"><div>中</div><div><div class="btrack" style="margin-bottom:3px"><div class="bfill" style="width:37.5%;background:var(--mute)"></div><span class="bval">Text $36</span></div><div class="btrack"><div class="bfill hi" style="width:32.3%"></div><span class="bval">GEMS $31</span></div></div></div><div class="brow"><div>中低</div><div><div class="btrack" style="margin-bottom:3px"><div class="bfill" style="width:54.2%;background:var(--mute)"></div><span class="bval">Text $52</span></div><div class="btrack"><div class="bfill hi" style="width:34.4%"></div><span class="bval">GEMS $33</span></div></div></div><div class="brow"><div>低 SES</div><div><div class="btrack" style="margin-bottom:3px"><div class="bfill" style="width:100.0%;background:var(--mute)"></div><span class="bval">Text $96</span></div><div class="btrack"><div class="bfill hi" style="width:36.5%"></div><span class="bval">GEMS $35</span></div></div></div><p class="hint" style="margin:8px 0 0">全體平均：GEMS $31／分 vs Text $36／分，看起來 GEMS 較划算；拆開後，低 SES 大幅較好、高 SES 略差。另外 Talent Search 九站的高中完成 CE 從約 $11,800 到 $16 萬（一站為負值；書中正文 $149,800、表 $161,420 不一致）。</p></div></div><div class="pg">14</div></section><section class="slide" data-i="14"><div class="in"><h3 class="h2">證據：最有效的，不一定最划算（Table 8.6，p.184–185）</h3><div class="bars ch8"><h5>開發中國家實驗研究：每提升 1 個標準差的成本（PPP 美元）</h5><div class="brow"><div>肯亞 能力分班</div><div class="btrack"><div class="bfill hi" style="width:2.0%"></div><span class="bval">$10</span></div></div><div class="brow"><div>印尼 連結學校委員會</div><div class="btrack"><div class="bfill hi" style="width:2.0%"></div><span class="bval">$10</span></div></div><div class="brow"><div>肯亞 教師績效誘因</div><div class="btrack"><div class="bfill" style="width:2.0%"></div><span class="bval">$40</span></div></div><div class="brow"><div>印度 教師出勤誘因</div><div class="btrack"><div class="bfill" style="width:2.0%"></div><span class="bval">$140</span></div></div><div class="brow"><div>肯亞 優秀生獎學金</div><div class="btrack"><div class="bfill hi" style="width:2.8%"></div><span class="bval">$190</span></div></div><div class="brow"><div>肯亞 教科書</div><div class="btrack"><div class="bfill" style="width:6.7%"></div><span class="bval">$460</span></div></div><div class="brow"><div>肯亞 減班</div><div class="btrack"><div class="bfill" style="width:26.3%"></div><span class="bval">$1,800</span></div></div><div class="brow"><div>印度 CAI</div><div class="btrack"><div class="bfill" style="width:100.0%"></div><span class="bval">$6,850</span></div></div><p class=hint style=margin:8px 0 0>肯亞優秀生獎學金效果 0.190 SD、CE $190；能力分班效果 0.176 SD、CE 只要 $10。另有馬達加斯加「教育報酬資訊」（效果 0.202 SD、CE ＜ $1），圖中未列。</p></div><div class="callout"><p><b>作者的三個結論：</b>① 可比較的很多，但<b>不排名</b>（規模、脈絡不同）；② 不能只問 what works，要問 at what cost；③ 差距極大，成本與效果沒有明顯相關。</p></div></div><div class="pg">15</div></section><section class="slide" data-i="15"><div class="in"><div class="disc ch8" id="disc④"><h3><span class="disbadge">討論 ④</span>平均很好看，誰被平均掉了？</h3><p class="dsub">看 GEMS 與 Talent Search 九站　·　約 12 分鐘</p><div class="orid"><div class="l">O</div><p class="t"><small>事實　Objective</small>從 GEMS 圖與 Talent Search 九站，我們看到哪些差異？（低 SES $35 vs $96、高 SES $27 vs $22；站點約 $11,800–$16 萬）</p><div class="l">R</div><p class="t"><small>感受　Reflective</small>你有沒有親身遇過「整體平均很好，但某群人沒被照顧到」的經驗？</p><div class="l">I</div><p class="t"><small>意義　Interpretive</small>為什麼平均 CE 會誤導決策？決策者要用平均、還是分群看？效率與公平怎麼取捨？</p><div class="l">D</div><p class="t"><small>決定　Decisional</small>如果要在全區推 GEMS，你會怎麼設計（分群、分階段、追蹤指標）？</p></div><div class="flow"><div class="st"><b>1</b>各自寫下一個「平均掩蓋差異」的經驗</div><div class="st"><b>2</b>兩人交換經驗</div><div class="st"><b>4</b>I 題四人組：平均 vs 分群</div><div class="st"><b>all</b>全班：把設計原則寫成 3 條</div></div><div class="timerbar"><span class="tlbl">計時</span><button type="button" class="tchip" data-secs="60">1 分</button><button type="button" class="tchip" data-secs="180">3 分</button><button type="button" class="tchip" data-secs="240">4 分</button><span class="tdisp">--:--</span><button type="button" class="tstop" aria-label="停止計時">停</button></div>
+<details><summary>老師的引導腳本</summary><p><b>R：</b>請學生用自己的教育現場經驗回答（分班、補救教學、資源班、偏鄉）。</p>
+<p><b>I：</b>可拋兩難：全區統一推 GEMS，對高 SES 略差（$27 vs $22），但對低 SES 大幅較好——要不要因為 5 元的差距放棄對低 SES 的大幅利益？（連到公平）</p>
+<p><b>D 產出：</b>把設計原則寫成 3 條，例如「先分群估算 CE」「不同群體用不同方案」「追蹤弱勢群體的效果」。Ch.8 到此結束，休息 10 分鐘。</p></details></div></div><div class="pg">16</div></section><section class="slide" data-i="16"><div class="in"><div class="round ch10" id="b1"><span class="lecbadge">講 ⑤</span><h2>從 CE 到 BC：把效益也換成錢，再折現</h2></div>
+<div class="grid2">
+  <div class="pcard ch8"><div class="tagrow"><span class="tag tag-p2"><i class="dot"></i>Ch.8</span></div><h4>CE：誰比較便宜？</h4><p>效果留在自然單位，答不了「值不值得」。</p></div>
+  <div class="pcard ch10"><div class="tagrow"><span class="tag tag-p4"><i class="dot"></i>Ch.10</span></div><h4>BC：效益有沒有大過成本？</h4><p>效益也換成錢，並折現成<button class="term" data-goto="pv">現值</button>，才能加減比較。</p></div>
+</div>
+<div class="grid4" style="grid-template-columns:repeat(3,1fr)">
+  <div class="pcard ch10"><h4><button class="term" data-goto="npv">NPV 淨現值</button></h4><p class="mono" style="font-size:16px;margin:4px 0"><b>B<sub>PV</sub> − C<sub>PV</sub></b></p><p style="font-size:14.5px">像「利潤」。小於 0 強烈推定應拒絕。（p.223）</p></div>
+  <div class="pcard ch10"><h4><button class="term" data-goto="bcr">BC ratio 效益成本比</button></h4><p class="mono" style="font-size:16px;margin:4px 0"><b>B<sub>PV</sub> ÷ C<sub>PV</sub></b></p><p style="font-size:14.5px">大於 1 表示效益超過成本。（p.224–225）</p></div>
+  <div class="pcard ch10"><h4><button class="term" data-goto="irr">IRR 內部報酬率</button></h4><p class="mono" style="font-size:16px;margin:4px 0"><b>使 NPV ＝ 0 的折現率</b></p><p style="font-size:14.5px">要與其他投資的利率比較才有意義。（p.225–227）</p></div>
+</div>
+</div><div class="pg">17</div></section><section class="slide" data-i="17"><div class="in">
+<h3 class="h2">一個方案，四個數字：成人識字方案（p.222–229）</h3>
+<p>成本 $300（一次）；完成後每年多賺 $150，連續 4 年；折現率 3%。</p>
+<div class="tl">
+  <div class="n cost"><b>−$300</b><span>第 0 年　成本</span></div>
+  <div class="n"><b>＋$150</b><span>第 1 年　現值 $146</span></div>
+  <div class="n"><b>＋$150</b><span>第 2 年　現值 $141</span></div>
+  <div class="n"><b>＋$150</b><span>第 3 年　現值 $137</span></div>
+  <div class="n"><b>＋$150</b><span>第 4 年　現值 $133</span></div>
+</div>
+<div class="grid4"><div class="stat"><b>$557</b><span>效益現值</span></div><div class="stat"><b>$257</b><span>NPV</span></div><div class="stat"><b>1.86</b><span>BC ratio</span></div><div class="stat"><b>34.9%</b><span>IRR（第三年回本）</span></div></div>
+<div class="warn"><span class="wh">書中數字提醒</span><p>時間軸依 p.223 的算式：成本在第 0 年、效益在第 1–4 年；Table 10.1 的年度標示與此差 1 年。p.228 的 break-even「2 年累積 $279」逐列驗算是 $287，但「第三年回本」的結論不變。p.224「10 年後 $867 折現為 $557」不成立（約 $645），只取概念。</p></div>
+</div><div class="pg">18</div></section><section class="slide" data-i="18"><div class="in">
+<div class="calc" id="calc"><h4 style="margin:0 0 10px">試算器：改改看，四個指標怎麼動</h4>
+  <div class="fields">
+    <div><label for="cc">成本（第 0 年）</label><input id="cc" type="number" value="300" min="0" step="10"></div>
+    <div><label for="cb">每年效益</label><input id="cb" type="number" value="150" min="0" step="10"></div>
+    <div><label for="cn">效益年數</label><input id="cn" type="number" value="4" min="1" max="60" step="1"></div>
+    <div><label for="cr">折現率（%）</label><input id="cr" type="number" value="3" min="0" step="0.5"></div>
+  </div>
+  <div class="res"><div class="stat"><b id="rpv">–</b><span>效益現值</span></div><div class="stat"><b id="rnpv">–</b><span>NPV</span></div><div class="stat"><b id="rbcr">–</b><span>BC ratio</span></div><div class="stat"><b id="rirr">–</b><span>IRR</span></div><div class="stat"><b id="rbe">–</b><span>回本（折現後）</span></div></div>
+  <p class="hint" style="margin:10px 0 0">現值的算法和書中一樣：每一年的效益先四捨五入到整數，再加總（146＋141＋137＋133＝557）。</p>
+  <p class="hint" id="calcmsg" style="margin:10px 0 0">試試看：成本 +10%（330）、每年效益 −10%（135），IRR 會從 34.9% 掉到 23.1%，降幅約三分之一。</p>
+  <div class="pillrow"><button class="resetbtn" id="calcReset">回到識字方案的數字</button><button class="resetbtn" id="calcSens">套用「成本 +10%、效益 −10%」</button></div>
+</div>
+</div><div class="pg">19</div></section><section class="slide" data-i="19"><div class="in"><div class="disc ch10" id="disc⑤"><h3><span class="disbadge">討論 ⑤</span>同一個方案，三個指標講三種故事</h3><p class="dsub">識字方案　·　約 12 分鐘</p><div class="orid"><div class="l">O</div><p class="t"><small>事實　Objective</small>識字方案我們算出哪四個數字？（NPV、BC ratio、IRR、回本年）</p><div class="l">R</div><p class="t"><small>感受　Reflective</small>「1.86 倍」和「34.9%」，哪個聽起來比較有感？為什麼？</p><div class="l">I</div><p class="t"><small>意義　Interpretive</small>如果對象分別是教育局長、財政部門、立法委員，你會先講哪個指標？各指標會漏掉什麼？</p><div class="l">D</div><p class="t"><small>決定　Decisional</small>你自己的工作報告會怎麼呈現？書中建議三個一起報（p.229），你認同嗎？</p></div><div class="flow"><div class="st"><b>1</b>各自寫：對三種聽眾我先講哪個</div><div class="st"><b>2</b>兩人交換，說明理由</div><div class="st"><b>4</b>I 題四人組：各指標漏了什麼</div><div class="st"><b>all</b>全班：一張「聽眾 × 指標」表</div></div><div class="timerbar"><span class="tlbl">計時</span><button type="button" class="tchip" data-secs="60">1 分</button><button type="button" class="tchip" data-secs="180">3 分</button><button type="button" class="tchip" data-secs="240">4 分</button><span class="tdisp">--:--</span><button type="button" class="tstop" aria-label="停止計時">停</button></div>
+<details><summary>老師的引導腳本</summary><p><b>O：</b>確認四個數字。若有人算不出 34.9%，提示是「讓 NPV ＝ 0 的折現率」；可以叫他們用上面的試算器。</p>
+<p><b>R：</b>多數人會覺得 34.9% 比較「爽」——書中也說「34.9% might sound better than $1.86」（p.229）。</p>
+<p><b>I：</b>把差異寫在白板：NPV 看總盈餘但受規模影響；BC ratio 看倍數但可能誤導「每 $1」；IRR 看報酬率但對流量很敏感（34.9% → 23.1%）；break-even 好溝通但對長效方案不利。</p>
+<p><b>D：</b>請學生自己寫「聽眾 × 指標」表。預期洞見：三個指標互補，不是誰取代誰。</p></details></div></div><div class="pg">20</div></section><section class="slide" data-i="20"><div class="in"><div class="round ch10" id="b2"><span class="lecbadge">講 ⑥</span><h2>三個指標各有陷阱，而且要問「誰的觀點」</h2></div>
+<div class="grid4" style="grid-template-columns:repeat(3,1fr)">
+  <div class="pcard ch10"><h4>NPV 被規模綁架</h4><p style="font-size:14.5px">$20M 方案即使效益很小，NPV 幾乎必勝 $2M 方案。換成每人 NPV，又看不出總資源需求，還會誤以為擴大規模 NPV 不變。（p.224）</p></div>
+  <div class="pcard ch10"><h4>BC ratio 的「每 $1」是簡化說法</h4><p style="font-size:14.5px">不保證多投的每一塊錢都有同樣報酬。學院入學方案：誘發的 $1M 當負效益算 1.5，當成本算 1.33。（p.225）</p></div>
+  <div class="pcard ch10"><h4>IRR 對變動很敏感</h4><p style="font-size:14.5px">成本 +10%（$330）、效益 −10%（$135），IRR 從 34.9% 掉到 23.1%。且仍需與門檻利率比較。（p.227）</p></div>
+</div>
+<div class="callout"><p><b>Break-even（回本期）：</b>好溝通，但對「慢慢才見效」的早期投資看起來偏差；效益若散在不同群體，社會回本了，各群體未必拿得回錢。（p.228–229）</p></div>
+</div><div class="pg">21</div></section><section class="slide" data-i="21"><div class="in">
+<h3 class="h2">誰的觀點？Perry 學前方案的三個帳戶（Example 10.1，p.230、234）</h3>
+<div class="bars ch10"><h5>NPV（現值於 4 歲，3% 折現，2015 美元）</h5><div class="brow"><div>參與者</div><div class="btrack"><div class="bfill" style="width:20.5%"></div><span class="bval">$33,177</span></div></div><div class="brow"><div>一般大眾（納稅人）</div><div class="btrack"><div class="bfill" style="width:79.5%"></div><span class="bval">$128,972</span></div></div><div class="brow"><div>整體社會</div><div class="btrack"><div class="bfill hi" style="width:100.0%"></div><span class="bval">$162,149</span></div></div><p class=hint style=margin:8px 0 0>方案成本 $20,947（由大眾負擔）；BC ratio：大眾 7.2、社會 8.7；社會 IRR 8.1%（效益跨 36 年）。社會＝參與者＋大眾，並扣掉兩者之間的移轉。</p></div>
+</div><div class="pg">22</div></section><section class="slide" data-i="22"><div class="in">
+<h3 class="h2">讀 BC 研究的三個提醒（p.231–232、227–228）</h3>
+<div class="grid4" style="grid-template-columns:repeat(3,1fr)">
+  <div class="pcard"><h4>① 觀點要寫清楚</h4><p style="font-size:14.5px">預設是「整個社會」，也可拆成參與者、納稅人。建議同時報社會觀點與出資者觀點。</p></div>
+  <div class="pcard"><h4>② 統計顯著不是入場券</h4><p style="font-size:14.5px">BC 的目的在引導決策，不是假設檢定。所有估計效果都放進模型、附標準誤；要檢定的是「NPV 是否大於零」。</p></div>
+  <div class="pcard"><h4>③ <button class="term" data-goto="sroi">SROI</button> ≠ IRR</h4><p style="font-size:14.5px">SROI 常只從單一出資者角度算，不是完整的社會觀點，所以不是 IRR。</p></div>
+</div>
+</div><div class="pg">23</div></section><section class="slide" data-i="23"><div class="in"><div class="disc ch10" id="disc⑥"><h3><span class="disbadge">討論 ⑥</span>Perry 的好處，落在誰身上？</h3><p class="dsub">三個帳戶　·　約 12 分鐘</p><div class="orid"><div class="l">O</div><p class="t"><small>事實　Objective</small>Perry 表裡：成本由誰付？效益分別流到誰手上？（$33,177、$128,972、$162,149）</p><div class="l">R</div><p class="t"><small>感受　Reflective</small>參與者拿到 $33,177、大眾拿到 $128,972，你覺得公平嗎？</p><div class="l">I</div><p class="t"><small>意義　Interpretive</small>為什麼書要強調「觀點要清楚說明」？「NPV 為正」——是對誰為正？</p><div class="l">D</div><p class="t"><small>決定　Decisional</small>如果你要向縣市政府提案，你會用哪一個觀點的數字去說服它？為什麼？</p></div><div class="flow"><div class="st"><b>1</b>個人寫：我會選哪個觀點</div><div class="st"><b>2</b>兩人交換，並說服對方</div><div class="st"><b>4</b>I 題四人組：NPV 對誰為正？</div><div class="st"><b>all</b>全班：對不同決策者的說法</div></div><div class="timerbar"><span class="tlbl">計時</span><button type="button" class="tchip" data-secs="60">1 分</button><button type="button" class="tchip" data-secs="180">3 分</button><button type="button" class="tchip" data-secs="240">4 分</button><span class="tdisp">--:--</span><button type="button" class="tstop" aria-label="停止計時">停</button></div>
+<details><summary>老師的引導腳本</summary><p><b>O：</b>確認三個帳戶的數字，並確認成本全由大眾負擔（p.230）。</p>
+<p><b>R：</b>公平感受沒有標準答案，接住即可。</p>
+<p><b>I：</b>關鍵是把「效益屬於誰、成本誰付」講清楚；社會觀點是加總扣掉移轉；同一個方案，對財政部門與對參與者的說法不同（p.231）。</p>
+<p><b>D：</b>請學生把說服對象（縣市長、財政局、家長團體）寫出來。可連結 CE 的 induced costs，也有相同的視角問題。</p></details></div></div><div class="pg">24</div></section><section class="slide" data-i="24"><div class="in"><div class="round ch10" id="b3"><span class="lecbadge">講 ⑦</span><h2>案例對照：學前、青少年、福利受領者</h2></div><h3 class="h2">三個案例（p.230–234、236–237，2015 美元，3% 折現）</h3><div class="bars ch10"><h5>BC ratio（社會觀點）</h5><div class="brow"><div>Chicago CPC（3–9 歲）</div><div class="btrack"><div class="bfill hi" style="width:100.0%"></div><span class="bval">10.8</span></div></div><div class="brow"><div>Perry 學前（3–4 歲）</div><div class="btrack"><div class="bfill hi" style="width:80.6%"></div><span class="bval">8.7</span></div></div><div class="brow"><div>NGYCP（16–18 歲）</div><div class="btrack"><div class="bfill" style="width:24.6%"></div><span class="bval">2.66</span></div></div><p class=hint style=margin:8px 0 0>Chicago CPC 表列 10.8，逐項驗算約 10.67（進位）。</p></div></div><div class="pg">25</div></section><section class="slide" data-i="25"><div class="in"><div class="tw"><table><thead><tr><th></th><th>成本</th><th>NPV（社會）</th><th>IRR</th><th>對象</th></tr></thead><tbody>
+<tr><td>Chicago CPC</td><td>$10,060</td><td>$97,250</td><td>—</td><td>3 歲到三年級，每中心 100–150 名兒童</td></tr>
+<tr><td>Perry</td><td>$20,947</td><td>$162,149</td><td>8.1%</td><td>4 歲，隨機分派，追蹤到 40 歲</td></tr>
+<tr><td>NGYCP</td><td>$16,825</td><td>$27,848</td><td>6.4%</td><td>16–18 歲高中輟學者，住宿式 22 週</td></tr></tbody></table></div>
+<p>書中提醒：三者衡量的效益不完全相同，比較要小心（起始年齡、效益種類、時間視野、成本差異）。青少年投資的三個優點：成本到效益的間隔短、行為後果更多（犯罪、健康、懷孕）、瞄準更準確；哪種更好，書中說是「an empirical question」（p.236–237）。</p>
+</div><div class="pg">26</div></section><section class="slide" data-i="26"><div class="in">
+<h3 class="h2">報酬率研究：多讀一年書，划不划算？（Example 10.2，p.234–236）</h3>
+<div class="grid2">
+  <div class="pcard"><h4>怎麼算</h4><ul class="lst" style="margin:0"><li>用各教育程度的「年齡─所得曲線」</li><li>效益＝多念的人在每個年齡多賺的收入差</li><li>成本＝放棄的收入（機會成本）＋學費等直接成本</li><li>IRR＝讓效益現值＝成本現值的折現率</li></ul><p style="font-size:14.5px">多數研究發現：大學 IRR 平均略低於初等教育，簡單推論是資源稀少時初等教育更值得。</p></div>
+  <div class="pcard"><h4>書中的五個批評</h4><ol class="lst" style="margin:0;font-size:14.5px"><li>假設教育唯一的效益是收入</li><li>只看教育「量」的報酬，沒看「質」</li><li>假設唯一成本是放棄的收入，但直接成本可能很大</li><li>用單一橫斷面，假設今天 65 歲者的收入代表今天 25 歲者 40 年後的收入</li><li>用高中畢業者當大學畢業者「沒讀大學」的反事實</li></ol></div>
+</div>
+</div><div class="pg">27</div></section><section class="slide" data-i="27"><div class="in">
+<h3 class="h2">教育投資，不一定 NPV 為正（p.238–239）</h3>
+<div class="grid2">
+  <div class="pcard" style="border-color:var(--badline);background:var(--badbg)"><h4>Education-first（5 個方案）</h4><p class="mono" style="font-size:34px;margin:4px 0;color:var(--badink)"><b>5／5</b></p><p style="font-size:14.5px">社會觀點 NPV 為負、BC ratio ＜ 1（先協助取得 GED 等證書）。參與者觀點 3 個為負；政府觀點 4 個為負。</p></div>
+  <div class="pcard" style="border-color:var(--good);background:var(--good-soft)"><h4>Mixed-initial-activity（5 個方案）</h4><p class="mono" style="font-size:34px;margin:4px 0;color:var(--good)"><b>0.7–3.79</b></p><p style="font-size:14.5px">社會觀點 BC ratio 範圍（依需要分配教育或求職協助）。只有一個方案在某個觀點出現損失。</p></div>
+</div>
+<div class="callout"><p>JTPA 職訓：成年男性效益 $2,700 ／成本 $1,640；男性青少年效益 −$1,940 ／成本 $3,910。書中結論：「not always the case that educational investments have positive NPVs」；也提醒尚未納入以公平為由的投資理由（p.239）。</p></div>
+</div><div class="pg">28</div></section><section class="slide" data-i="28"><div class="in"><div class="disc ch10" id="disc⑦"><h3><span class="disbadge">討論 ⑦</span>學前、青少年、福利受領者：錢該投哪？</h3><p class="dsub">三個案例　·　約 15 分鐘</p><div class="orid"><div class="l">O</div><p class="t"><small>事實　Objective</small>三個案例的 BC ratio 與 IRR 各是多少？welfare-to-work 哪一類是負的？</p><div class="l">R</div><p class="t"><small>感受　Reflective</small>「教育投資一定划算」的直覺，有沒有被挑戰到？你的感覺是什麼？</p><div class="l">I</div><p class="t"><small>意義　Interpretive</small>為什麼學前 BC ratio 高、education-first 卻失敗？可能的原因有哪些（對象、時間、瞄準、觀點）？</p><div class="l">D</div><p class="t"><small>決定　Decisional</small>台灣有哪一項政策，你想拿 CE 或 BC 來檢驗？需要什麼資料？</p></div><div class="flow"><div class="st"><b>1</b>各自寫：我想檢驗的一項政策</div><div class="st"><b>2</b>兩人交換並互提資料需求</div><div class="st"><b>4</b>I 題四人組：為什麼會失敗？</div><div class="st"><b>all</b>全班：列出「政策 × 需要的資料」清單</div></div><div class="timerbar"><span class="tlbl">計時</span><button type="button" class="tchip" data-secs="60">1 分</button><button type="button" class="tchip" data-secs="240">4 分</button><button type="button" class="tchip" data-secs="300">5 分</button><span class="tdisp">--:--</span><button type="button" class="tstop" aria-label="停止計時">停</button></div>
+<details><summary>老師的引導腳本</summary><p><b>O：</b>兩組數據並排：學前 8.7／10.8、青少年 2.66、education-first 5／5 為負。</p>
+<p><b>R：</b>可能有學生覺得挫折，接住，並說「這正是 BC 的價值：它有能力說不」。</p>
+<p><b>I：</b>不急著給答案；書中說「Ultimately … an empirical question」（p.237）。引導學生想時間、對象、瞄準、觀點四個維度。</p>
+<p><b>D：</b>學生產出的清單可帶到期末報告的題目發想。時間不夠可縮短為 8 分鐘，只跑 I 和 D。</p></details></div></div><div class="pg">29</div></section><section class="slide" data-i="29"><div class="in">
+<h2 id="d9" class="h1">收束：CE 和 BC，什麼時候用哪個？</h2>
+<div class="tw"><table><thead><tr><th></th><th>CE 成本效果分析（Ch.8）</th><th>BC 效益成本分析（Ch.10）</th></tr></thead><tbody>
+<tr><td><b>回答的問題</b></td><td>哪個方案達成同一目標最便宜？</td><td>這個投資的效益有沒有超過成本？</td></tr>
+<tr><td><b>結果的單位</b></td><td>自然單位：每 1 SD、每位新畢業生</td><td>貨幣：$、倍數、%</td></tr>
+<tr><td><b>主要指標</b></td><td>CE ratio、ICER、CE 平面</td><td>NPV、BC ratio、IRR、break-even</td></tr>
+<tr><td><b>最大優點</b></td><td>不必把教育成果換成錢</td><td>能直接判斷「值不值得」、可跨領域比較</td></tr>
+<tr><td><b>最大限制</b></td><td>只能比同一種效果；答不了值不值得</td><td>效益要能貨幣化；公平與難以估價的結果被排除</td></tr>
+<tr><td><b>共同提醒</b></td><td colspan="2">成本用 ingredients 方法完整算（含連帶成本）；看清楚觀點、脈絡、規模；不確定性見 Ch.11</td></tr></tbody></table></div>
+<div class="grid4" style="grid-template-columns:repeat(3,1fr)">
+  <div class="pcard"><h4>本週三句話 ①</h4><p>CE ratio 是「效率」，不是「預算」，更不是「值不值得」。</p></div>
+  <div class="pcard"><h4>②</h4><p>看數字要看四件事：成本算全了沒、增量還是平均、誰的觀點、對哪群人。</p></div>
+  <div class="pcard"><h4>③</h4><p>BC 有能力說不：不是所有教育投資的 NPV 都為正。</p></div>
+</div>
+</div><div class="pg">30</div></section><section class="slide" data-i="30"><div class="in"><div class="disc ch8" id="disc⑧"><h3><span class="disbadge">討論 ⑧</span>收束：一句話收穫（ORID 走完一圈）</h3><p class="dsub">全班　·　約 12 分鐘</p><div class="orid"><div class="l">O</div><p class="t"><small>事實　Objective</small>今天你記住的一個關鍵數字或一張圖是什麼？</p><div class="l">R</div><p class="t"><small>感受　Reflective</small>今天最讓你有感覺（意外、不舒服、被說服）的一刻是什麼？</p><div class="l">I</div><p class="t"><small>意義　Interpretive</small>如果只能留下一個洞見，是什麼？（用一句話寫，不超過 30 字）</p><div class="l">D</div><p class="t"><small>決定　Decisional</small>下週起，你會在工作或研究中怎麼用它？或對哪一個做法會多問一句「at what cost」？</p></div><div class="flow"><div class="st"><b>1</b>各自寫一句話</div><div class="st"><b>2</b>兩人交換，互相精簡</div><div class="st"><b>4</b>四人組選出最有料的一句</div><div class="st"><b>all</b>全班：每組讀一句，貼在白板</div></div><div class="timerbar"><span class="tlbl">計時</span><button type="button" class="tchip" data-secs="60">1 分</button><button type="button" class="tchip" data-secs="180">3 分</button><button type="button" class="tchip" data-secs="240">4 分</button><span class="tdisp">--:--</span><button type="button" class="tstop" aria-label="停止計時">停</button></div>
+<details><summary>老師的引導腳本</summary><p>用「一句話收穫」的方式問，讓大家把整天的學習收成一個行動。I 要求不超過 30 字，逼大家提煉；D 可連結到期末報告或工作上的具體場景。收完後提醒去「測驗」分頁：先自己做、再對答案、最後再回頭翻書。</p></details></div></div><div class="pg">31</div></section>
+</div>
+</section>
+
+<section class="tabpanel" id="panel-quiz" data-panel="quiz" hidden>
+<div class="layout">
+  <aside class="side"><details class="tocbox" open><summary>目錄</summary><ol class="toc">
+    <li><a href="#q1">1. Ch.8 選擇題</a></li>
+    <li><a href="#q2">2. Ch.10 選擇題</a></li>
+    <li><a href="#q3">3. 指標配對</a></li>
+    <li><a href="#q4">4. 判斷題</a></li>
+    <li><a href="#q5">5. 計算題</a></li>
+    <li><a href="#q6">6. 情境簡答</a></li>
+    <li><a href="#q7">7. 跨讀選擇題</a></li>
+  </ol></details></aside>
+  <article class="doc">
+    <header class="dh">
+      <span class="eyebrow">自我評量 | 選完馬上出解析</span>
+      <h1>測驗：這幾篇你抓到重點了嗎？</h1>
+      <p class="subl">選擇題與判斷題共 30 題，選完立刻對答案並看解析；配對題點左邊再點右邊；計算題與情境簡答沒有標準作答，寫完再打開「參考解答與給分」對照。作答只存在你自己的瀏覽器，重新整理不會消失，也不會傳給任何人。</p>
+    </header>
+    <div class="scorebar" id="totalScore"></div>
+    <div id="bandMsg"></div>
+
+    <h2 id="q1" class="h1">1. Ch.8 成本效果分析（9 題）</h2><div id="listA"></div>
+    <h2 id="q2" class="h1">2. Ch.10 效益成本分析（10 題）</h2><div id="listB"></div>
+
+    <h2 id="q3" class="h1">3. 指標配對</h2>
+    <p>左邊是描述，右邊是指標。先點左邊一句，再點右邊的指標。配對正確會鎖成綠色；錯了會閃紅，可以再試。</p>
+    <div class="scorebar" id="matchScore"></div>
+    <div class="matchwrap"><div id="matchLeft"></div><div id="matchRight"></div></div>
+    <button id="matchReset" class="resetbtn">重新配對</button>
+
+    <h2 id="q4" class="h1">4. 判斷題（6 題）</h2><div id="listD"></div>
+
+    <h2 id="q5" class="h1">5. 計算題</h2>
+    <p>請準備計算機，先在下面的框寫下算式，再看參考解答。你也可以回到「教學簡報」分頁用試算器驗證 C2。</p>
+    <div id="calcList"></div>
+
+    <h2 id="q6" class="h1">6. 情境簡答</h2>
+    <p>這三題沒有標準答案。重點是能不能提出有依據、講得出具體機制的回答，而不是兩面討好。寫完後打開「參考解答與給分」自我檢查。</p>
+    <div id="openList"></div>
+
+    <h2 id="q7" class="h1">7. 跨讀選擇題（5 題）</h2><div id="listF"></div>
+    <button id="quizReset" class="resetbtn">清除所有作答，重新開始</button>
+  </article>
+</div>
+</section>
+</main>
+<script>
+(function(){
+"use strict";
+var root=document.documentElement, LS="w4-reader-";
+function lsGet(k,d){try{var v=localStorage.getItem(LS+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function lsSet(k,v){try{localStorage.setItem(LS+k,JSON.stringify(v))}catch(e){}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+
+/* theme */
+try{var t=localStorage.getItem(LS+"theme");if(t)root.setAttribute("data-theme",JSON.parse(t))}catch(e){}
+document.getElementById("themeToggle").onclick=function(){
+  var dark=root.getAttribute("data-theme")==="dark"||(!root.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches);
+  var nt=dark?"light":"dark";root.setAttribute("data-theme",nt);lsSet("theme",nt);
+};
+
+/* tabs */
+var tabs=["guide","deck","quiz"];
+var tabbtns=[].slice.call(document.querySelectorAll(".tabbtn"));
+var panels={guide:document.getElementById("panel-guide"),deck:document.getElementById("panel-deck"),quiz:document.getElementById("panel-quiz")};
+function showTab(name,push){
+  if(tabs.indexOf(name)<0)name="guide";
+  tabs.forEach(function(n){panels[n].hidden=(n!==name)});
+  tabbtns.forEach(function(b){b.setAttribute("aria-selected",String(b.getAttribute("data-tab")===name))});
+  lsSet("tab",name);window.scrollTo({top:0});
+  if(push!==false){try{history.replaceState(null,"","#"+name)}catch(e){}}
+}
+tabbtns.forEach(function(b){b.onclick=function(){showTab(b.getAttribute("data-tab"))}});
+[].forEach.call(document.querySelectorAll("[data-tab-go]"),function(b){b.onclick=function(){showTab(b.getAttribute("data-tab-go"))}});
+var startTab=(location.hash||"").replace("#","");
+if(tabs.indexOf(startTab)<0)startTab=lsGet("tab","guide");
+showTab(startTab,false);
+
+/* toc scroll-spy */
+[].forEach.call(document.querySelectorAll(".tabpanel"),function(panel){
+  var links=[].slice.call(panel.querySelectorAll(".toc a"));
+  if(!links.length||!("IntersectionObserver" in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;
+    links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+en.target.id)})})},{rootMargin:"-20% 0px -70% 0px"});
+  links.forEach(function(a){var el=document.getElementById(a.getAttribute("href").slice(1));if(el)io.observe(el)});
+});
+
+/* glossary */
+var GROUPS=[{"group": "A. 評估的類型與基本觀念（Ch.1）", "rows": [["經濟評估", "Economic evaluation", "明確處理成本、或拿成本去對照成果／效益的評估。只問「有沒有效」還不算。", "Ch.1 p.4"], ["機會成本", "Opportunity cost", "用了這個資源，就不能拿去做別的事，被放棄的最佳用途就是成本。", "Ch.1 p.3–4"], ["成分法", "Ingredients method", "把方案用到的每一種資源（人員、設備、場地…）的量與價列出來加總，所有評估類型都用它算成本。", "Ch.1 p.9、24"], ["成本分析", "Cost analysis", "只算完整的資源成本，不談成果。", "Ch.1 p.9–10"], ["成本可行性", "Cost-feasibility (CF)", "只估成本，看方案負擔不負擔得起。", "Ch.1 p.10"], ["成本效果分析", "Cost-effectiveness (CE)", "拿成本對照「不換成錢」的成果，比較達成同一目標的不同方案。", "Ch.1 p.12"], ["成本效用分析", "Cost-utility (CU)", "CE 的近親：把多個結果依偏好加權成「效用」分數，再與成本比。", "Ch.1 p.16；Ch.8 p.169"], ["效益成本分析", "Benefit-cost (BC)", "把成果換成錢，與成本相減或相除，能判斷單一方案值不值得。", "Ch.1 p.17"], ["生產效率／配置效率", "Productive／Allocative efficiency", "CE 對應生產效率（達成目標花最少），BC 對應配置效率（該不該投資在這裡）。", "Ch.1 p.24"]]}, {"group": "B. 成本效果分析（Ch.8）", "rows": [["成本效果比", "CE ratio", "成本 ÷ 效果，也就是買一單位成果的價格。越低越划算。", "Ch.8 p.166–167"], ["增量", "Incremental", "相對於「照舊做法」（business as usual）多花的成本、多得的效果。", "Ch.8 p.166"], ["增量成本效果比", "ICER", "兩個方案之間，「多花的錢 ÷ 多得的效果」。用來一階一階往上比較。", "Ch.8 p.179–181"], ["效果指標", "Effectiveness measure", "CE 用來衡量成果的單一（univariate）指標，如標準差、新畢業人數，須用有效的研究方法辨識。", "Ch.8 p.166"], ["效果量", "Effect size", "用標準差當單位表示成果的變化，例如 0.12 SD（白話補充）。", "Ch.8 表 8.1"], ["連帶成本", "Induced costs", "方案帶動的、其他單位或後續課程的額外成本。漏算會低估。", "Ch.8 p.182"], ["CE 平面", "CE plane", "橫軸效果、縱軸成本的四象限圖，用來判斷方案的取捨。", "Ch.8 p.177–179"], ["支配（嚴格／弱）", "Dominance (strictly／weakly)", "嚴格支配：更貴又更沒效。弱支配：ICER 不升反降，被前後方案的組合超越（書中以 Table 8.4 示範，無逐字定義）。", "Ch.8 p.181"], ["願付價格", "Willingness to pay（maximum acceptable ICER）", "決策者願意為多一單位成果付的最高價，CE 分析自己決定不了。", "Ch.8 p.178–179"], ["異質性", "Heterogeneity", "同一個方案，對不同族群、不同站點的成本與效果不同，平均會遮蔽差異。", "Ch.8 p.187"], ["期望值 CE／混合 CE", "Expected value CE／Hybrid CE", "前者用期望值處理不確定結果；後者分子為「成本 − 已換成錢的效益」，合法但少用。", "Ch.8 p.171–173"], ["效果成本比", "Effectiveness-cost ratio (ECR)", "CE ratio 的倒數：每 $1 買到多少效果。作者建議統一報 CE ratio。", "Ch.8 p.170–171"]]}, {"group": "C. 效益成本分析（Ch.10）", "rows": [["現值", "Present value (PV)", "未來的錢折成「今天值多少」。", "Ch.10 p.223"], ["折現／折現率", "Discounting／Discount rate", "把未來金額打折換成現值的做法；打折的比率。本章示範用 3%。", "Ch.10 p.223、227"], ["淨現值", "Net present value (NPV)", "效益現值 − 成本現值，像「利潤」。小於 0 強烈推定應拒絕。", "Ch.10 p.223"], ["效益成本比", "Benefit-cost ratio (BC ratio)", "效益現值 ÷ 成本現值，大於 1 表示效益超過成本。", "Ch.10 p.224–225"], ["內部報酬率", "Internal rate of return (IRR)", "讓 NPV 剛好等於 0 的折現率。要與其他投資的利率比較才有意義。", "Ch.10 p.225–227"], ["回本期", "Break-even／Payback period", "累積折現效益追上成本所需的時間。易溝通，但對慢慢見效的方案不利。", "Ch.10 p.228"], ["社會觀點", "Social perspective", "把整個社會的資源都算進去；也可拆成參與者、納稅人。觀點必須說清楚。", "Ch.10 p.231"], ["多重帳戶分析", "Multiple account BC analysis", "分帳戶列出誰贏誰輸，例如參與者、一般大眾、社會。", "Ch.10 p.231"], ["移轉", "Transfer", "錢從一群人轉到另一群人，本身沒有新增資源。社會加總時要扣掉。", "Ch.10 p.234"], ["負效益", "Negative benefit", "把新增的支出（如誘發的大學入學）當負的效益，而不是成本。書中偏好這種算法。", "Ch.10 p.225"], ["影子價格", "Shadow price", "替沒有市場價格的成果估一個貨幣價值。方法在 Ch.9。", "（Ch.9）Ch.10 p.221"], ["社會投資報酬率", "SROI", "常只從單一出資者角度算，不是完整的社會觀點，所以不等於 IRR。", "Ch.10 p.227–228"], ["敏感度分析", "Sensitivity analysis", "改變假設，看結果穩不穩。細節在 Ch.11。", "Ch.10 p.222、232"], ["年齡─所得曲線", "Age-earnings profile", "各教育程度者在各年齡的平均所得軌跡，用來估多念一年書的報酬率。", "Ch.10 p.235"]]}, {"group": "D. McMahon 三章", "rows": [["放棄所得", "Forgone earnings", "學生念書期間沒賺到的錢，是投資成本的一部分。", "McMahon p.85"], ["機構成本", "Institutional costs", "學校教每個學生的成本。總投資成本＝機構成本＋放棄所得。", "McMahon p.85、93"], ["社會／私人報酬率", "Social／Private rate of return", "社會：稅前所得對總成本；私人：稅後所得對學生家庭的私人成本。", "McMahon p.93–94"], ["狹義社會報酬率", "Narrow social rate of return", "只含所得增量、不含非市場效益，所以低估。", "McMahon p.94"], ["完全法", "Full method", "直接由所得與成本資料算出的純 IRR，可與其他投資比較。", "McMahon p.94、188"], ["非市場效益", "Non-market benefits", "不是薪水的好處，如健康、子女、壽命。私人的在 Ch.4，社會的在 Ch.5。", "McMahon p.118"], ["所得等值", "Income equivalent value", "把非市場效益換算成「等值的所得」，好與所得效益直接相加。", "McMahon p.119"], ["重複計算", "Double counting", "教育對健康的影響若沒控制所得，會把所得效果算兩次。", "McMahon p.122"], ["外部性", "Externalities", "外溢到他人（含後代）的效益，如民主、犯罪減少。", "McMahon p.181"], ["市場失靈", "Market failure", "因資訊不足等原因，市場無法達到有效率的投資量。", "McMahon p.120–121"], ["能力偏誤", "Ability bias", "收入較高可能是原本能力較強，不全是教育造成。作者主張被測量誤差大致抵銷。", "McMahon p.94–95、190–191"]]}];
+var GID={"經濟評估":"econeval","機會成本":"oppcost","成分法":"ingredients","成本分析":"costanalysis","成本可行性":"cf","成本效果分析":"ce","成本效用分析":"cu2","效益成本分析":"bc","生產效率／配置效率":"eff","成本效果比":"cer","增量":"incr","增量成本效果比":"icer","效果指標":"effmeasure","效果量":"es","連帶成本":"induced","CE 平面":"ceplane","支配（嚴格／弱）":"dominance","願付價格":"wtp","異質性":"hetero","期望值 CE／混合 CE":"expected","效果成本比":"ecr","現值":"pv","折現／折現率":"disc","淨現值":"npv","效益成本比":"bcr","內部報酬率":"irr","回本期":"breakeven","社會觀點":"social","多重帳戶分析":"multi","移轉":"transfer","負效益":"negben","影子價格":"shadow","社會投資報酬率":"sroi","敏感度分析":"sens","年齡─所得曲線":"ageearn","放棄所得":"forgone","機構成本":"inst","社會／私人報酬率":"rates","狹義社會報酬率":"narrow","完全法":"full","非市場效益":"nonmarket","所得等值":"incomeeq","重複計算":"double","外部性":"extern","市場失靈":"mfail","能力偏誤":"abilitybias"};
+var ALIAS={cu:"cu2"};
+var glossGrid=document.getElementById("glossGrid");
+GROUPS.forEach(function(g,gi){
+  g.rows.forEach(function(r){
+    var d=document.createElement("details");d.className="gcard";d.id="term-"+(GID[r[0]]||("t"+gi+"-"+r[0]));
+    d.setAttribute("data-g",String(gi));
+    d.innerHTML='<summary>'+esc(r[0])+' <span class="dim" style="font-weight:500;font-size:13.5px">'+esc(r[1])+'</span></summary><p>'+esc(r[2])+'</p><p class="dim" style="font-size:13px;margin-top:4px">出處：'+esc(r[3])+'</p>';
+    glossGrid.appendChild(d);
+  });
+});
+[].forEach.call(document.querySelectorAll("#gfilter .gf"),function(btn){
+  btn.onclick=function(){
+    [].forEach.call(document.querySelectorAll("#gfilter .gf"),function(b){b.classList.remove("on")});
+    btn.classList.add("on");var f=btn.getAttribute("data-f");
+    [].forEach.call(glossGrid.children,function(c){c.hidden=!(f==="all"||c.getAttribute("data-g")===f)});
+  };
+});
+[].forEach.call(document.querySelectorAll(".term[data-goto]"),function(btn){
+  btn.onclick=function(){
+    var id=btn.getAttribute("data-goto");id=ALIAS[id]||id;
+    var card=document.getElementById("term-"+id);if(!card)return;
+    showTab("guide");
+    [].forEach.call(document.querySelectorAll("#gfilter .gf"),function(b){b.classList.toggle("on",b.getAttribute("data-f")==="all")});
+    [].forEach.call(glossGrid.children,function(c){c.hidden=false});
+    card.open=true;
+    setTimeout(function(){card.scrollIntoView({behavior:"smooth",block:"center"});card.classList.add("flash");setTimeout(function(){card.classList.remove("flash")},1500)},60);
+  };
+});
+
+/* calculator */
+function pvOf(c,b,n,r){var s=0;for(var t=1;t<=n;t++)s+=b/Math.pow(1+r,t);return s}
+function irrOf(c,b,n){
+  if(c<=0||b<=0)return null;
+  if(b*n<=c)return null;
+  var lo=-0.99,hi=10;
+  for(var i=0;i<200;i++){var m=(lo+hi)/2;if(pvOf(c,b,n,m)>c)lo=m;else hi=m}
+  return (lo+hi)/2;
+}
+function pvRound(b,n,r){var s=0;for(var t=1;t<=n;t++)s+=Math.round(b/Math.pow(1+r,t));return s}
+function beOf(c,b,n,r){var s=0;for(var t=1;t<=n;t++){s+=b/Math.pow(1+r,t);if(s>=c)return t}return null}
+function money(x){return "$"+Math.round(x).toLocaleString("en-US")}
+function calc(){
+  var c=+document.getElementById("cc").value,b=+document.getElementById("cb").value,n=Math.max(1,Math.round(+document.getElementById("cn").value)),r=(+document.getElementById("cr").value)/100;
+  if(!(c>=0)||!(b>=0)||!(r>-0.99)){return}
+  var pv=pvRound(b,n,r),npv=pv-c,ir=irrOf(c,b,n),be=beOf(c,b,n,r);
+  document.getElementById("rpv").textContent=money(pv);
+  var e=document.getElementById("rnpv");e.textContent=(npv<0?"−":"")+money(Math.abs(npv));
+  document.getElementById("rbcr").textContent=c>0?(pv/c).toFixed(2):"–";
+  document.getElementById("rirr").textContent=ir===null?"–":(ir*100).toFixed(1)+"%";
+  document.getElementById("rbe").textContent=be===null?"沒有回本":"第 "+be+" 年";
+  document.getElementById("calcmsg").textContent=npv<0?"NPV 為負：依書中說法，強烈推定應拒絕這個方案（p.223）。":(ir===null?"":"IRR 要和其他投資的利率比較才有意義；折現率設 "+(r*100).toFixed(1)+"%，NPV ＞ 0 就表示 IRR 高於它。");
+}
+["cc","cb","cn","cr"].forEach(function(id){document.getElementById(id).addEventListener("input",calc)});
+document.getElementById("calcReset").onclick=function(){document.getElementById("cc").value=300;document.getElementById("cb").value=150;document.getElementById("cn").value=4;document.getElementById("cr").value=3;calc()};
+document.getElementById("calcSens").onclick=function(){document.getElementById("cc").value=330;document.getElementById("cb").value=135;document.getElementById("cn").value=4;document.getElementById("cr").value=3;calc()};
+calc();
+
+/* ---------- quiz ---------- */
+var Q={"A": [{"q": "CE ratio（成本效果比）的意思，最接近下列哪一個？", "o": ["每 $1 成本能換到多少錢的效益", "一個方案需要編列的總預算", "買一單位成果的價格（成本 ÷ 效果）", "這個方案值不值得做的判斷"], "a": "C", "e": "CE ratio 是成本除以效果，白話就是「買一單位成果的價格」，越低越划算。它不是預算，也不直接回答值不值得。", "ref": "Ch.8 p.166–167"}, {"q": "使用 CE ratio 前，下列哪一項「不是」書中提到的前提？", "o": ["可以同時把數學成績、出席率、滿意度三個效果放進同一個比值", "成本與效果都是相對於「照舊做法」的增量", "效果指標必須是單一（univariate）而且經有效研究方法辨識", "成本要對應到產生效果的資源"], "a": "A", "e": "CE 的效果要是單一指標。多個目標要合成一個，得改用成本效用分析（CU）等方法。", "ref": "Ch.8 p.166、169"}, {"q": "Table 8.1 中，跨齡輔導的成本（$611）最高，但數學 CE ratio（$630）卻最低。最合理的解讀是？", "o": ["書中數字有錯", "CE 分析只能在成本相同時比較", "跨齡輔導的成本被低估了", "成本高的方案效果夠大時，每單位效果的價格仍可能最低"], "a": "D", "e": "跨齡輔導數學效果約 0.97 SD，遠大於其他方案。CE ratio 是成本 ÷ 效果，效果夠大就能把價格壓低。「貴」不等於「不划算」。", "ref": "Ch.8 p.167–168、Table 8.1"}, {"q": "Talent Search 每多一位高中畢業生的 CE ratio 是 $47,260。下列解讀何者正確？", "o": ["要多編 $47,260 的預算，就一定能多一位畢業生", "這是效率指標：每多一位新增畢業生約花 $47,260，但不等於所需預算，也不保證效果", "因為比公立高中每生支出貴，所以應拒絕", "因為超過 $10,000，所以不划算"], "a": "B", "e": "CE ratio 是效率指標，不代表需要多少預算，也不保證得到那樣的效果（p.176）。值不值得，要靠願付價格或 BC 分析（p.175、179）。", "ref": "Ch.8 p.173–176"}, {"q": "某方案相對現況「增量成本 −$1,000、增量效果 −2」，CE ratio 為 +$500。它落在什麼位置？", "o": ["絕對優勢：更省而且更有效", "比值無定義", "更貴而且更有效，要看願付價格", "更省但更差（書中的 D 象限），通常依 do no harm 排除"], "a": "D", "e": "成本與效果同為負，比值變成正數，但意義是「省了錢、也變差了」。所以要先檢查符號，再看比值。", "ref": "Ch.8 p.176–177、Table 8.3"}, {"q": "在 ICER 分析中，「嚴格支配（strictly dominated）」的方案是指？", "o": ["成本最低的方案", "比另一方案更貴，而且效果更差", "效果最大的方案", "ICER 最高的方案"], "a": "B", "e": "更貴又更沒效的方案永遠不會被選，先刪掉。之後再處理弱支配（ICER 不升反降）。", "ref": "Ch.8 p.181"}, {"q": "City Connects 只算學校核心成本（$1,540），而不算社區夥伴提供的服務（$3,030），會發生什麼事？", "o": ["CE ratio 被低估，看起來比實際更划算（$3,950 vs $11,720）", "CE ratio 被高估", "沒有影響，因為社區夥伴不是學校", "CE ratio 變成負數"], "a": "A", "e": "CE ratio 要用「產生效果的所有資源」算。漏掉連帶成本會嚴重低估。", "ref": "Ch.8 p.182–183、Table 8.5"}, {"q": "GEMS Math（個別化教學）全體平均較划算（$31 vs $36 每分）。依家庭 SES 拆開後，結論是？", "o": ["對所有 SES 都更划算", "對低 SES 反而較差", "對低、中 SES 明顯更划算，對高 SES 略差", "各 SES 沒有差異"], "a": "C", "e": "低 SES：GEMS $35 vs Text $96；高 SES：GEMS $27 vs Text $22。平均會遮蔽異質性。", "ref": "Ch.8 p.187–188、Table 8.7"}, {"q": "從 Table 8.6（開發中國家實驗研究）作者得到的結論是？", "o": ["依 CE ratio 排名，前三名就是最佳政策", "最有效的方案不一定最划算，不能只問 what works，要問 at what cost", "開發中國家不適用 CE 分析", "CE ratio 與效果大小呈高度正相關"], "a": "B", "e": "作者刻意不排名（規模與脈絡不同），並指出成本與效果沒有明顯相關，差距可達數百倍。", "ref": "Ch.8 p.184–185"}], "Bq": [{"q": "淨現值（NPV）的定義是？", "o": ["折現後的效益減折現後的成本", "未折現的效益總和減成本總和", "效益現值除以成本現值", "讓效益等於成本的折現率"], "a": "A", "e": "NPV ＝ 效益現值 − 成本現值。C 是 BC ratio，D 是 IRR。", "ref": "Ch.10 p.223"}, {"q": "內部報酬率（IRR）最貼切的說法是？", "o": ["社會折現率的另一個名稱", "每 $1 成本換到的效益", "累積效益追上成本所需的年數", "讓 NPV 剛好等於 0 的折現率"], "a": "D", "e": "IRR 是使效益現值等於成本現值（NPV＝0）的折現率，要與其他投資的利率比較才有意義。", "ref": "Ch.10 p.225–226"}, {"q": "關於 NPV 的規模問題，書中的說法是？", "o": ["NPV 與規模無關", "大方案即使效益很小，NPV 也幾乎必然勝過小方案（例如 $20M vs $2M）", "每人 NPV 能完整呈現總資源需求", "規模越大，每人 NPV 一定越低"], "a": "B", "e": "NPV 是絕對金額，受規模影響很大；換成每人 NPV 又看不出總資源需求，還容易誤以為擴大規模 NPV 不變。", "ref": "Ch.10 p.224"}, {"q": "識字方案的 BC ratio 是 1.86。書中提醒我們，「每投入 $1 有 $1.86 的報酬」這句話：", "o": ["完全精確，可隨意擴大投資", "代表 IRR 一定超過 100%", "只是簡化說法，不保證多投的每一塊錢都有同樣的報酬", "只適用於私人觀點"], "a": "C", "e": "效益只對應特定規模，多投的錢未必有同樣報酬。", "ref": "Ch.10 p.225"}, {"q": "識字方案成本升 10%（$330）、每年效益降 10%（$135），IRR 會從 34.9% 變成？", "o": ["約 31.4%（降 10%）", "約 27.9%（降 20%）", "約 23.1%（降約三分之一）", "仍是 34.9%"], "a": "C", "e": "IRR 對流量變動很敏感：成本與效益各動 10%，IRR 就掉約三分之一。", "ref": "Ch.10 p.227"}, {"q": "Perry 方案表中，參與者 NPV $33,177、一般大眾 NPV $128,972、社會 NPV $162,149。三者的關係是？", "o": ["社會 NPV ＝ 參與者 ＋ 大眾（扣掉兩者之間的移轉）", "社會 NPV 一定小於任何一方", "成本由參與者負擔", "大眾與社會的 BC ratio 必定相同"], "a": "A", "e": "33,177 ＋ 128,972 ＝ 162,149。成本 $20,947 由大眾負擔（參與者欄為「–」）。", "ref": "Ch.10 p.230、234"}, {"q": "關於統計顯著性，Ch.10 引用 Farrow & Zerbe 的立場是？", "o": ["效益必須達到 p < .05 才能放進 BC 分析", "只有成本需要檢定", "BC 分析完全不需要考慮不確定性", "統計顯著性不是納入效益的條件；BC 真正要檢定的是「NPV 是否大於零」"], "a": "D", "e": "BC 的目的是引導決策，不是假設檢定。不確定性放在敏感度分析（Ch.11）。作者也承認並非所有研究都接受這種做法。", "ref": "Ch.10 p.232"}, {"q": "Welfare-to-work（Greenberg 等，2009）的 education-first 五個方案，社會觀點的結果是？", "o": ["五個 NPV 都為正", "五個 NPV 全為負、BC ratio 小於 1", "只有一個為負", "書中沒有討論"], "a": "B", "e": "這說明教育投資不一定 NPV 為正。mixed-initial-activity 方案的社會 BC ratio 範圍是 0.7–3.79。", "ref": "Ch.10 p.239"}, {"q": "為什麼 SROI（社會投資報酬率）不等於 IRR？", "o": ["因為 SROI 常只從單一出資者的角度算，不是完整的社會觀點", "因為 SROI 一定比較低", "因為 SROI 不用貨幣", "因為 IRR 只能用於學前教育"], "a": "A", "e": "書中舉例：企業出 $1M、政府配合 $1M，企業只拿自己的 $1M 對照效益，視配合款為槓桿資金。", "ref": "Ch.10 p.227–228"}, {"q": "關於「多讀一年書的報酬率研究」，下列哪一項「不是」書中提到的批評？", "o": ["假設教育唯一的效益是收入", "只衡量教育的「量」，沒有衡量「質」", "假設唯一的成本是放棄的收入，忽略直接成本", "樣本人數必須超過一萬人才算有效"], "a": "D", "e": "書中的五項批評是：只算收入效益、只看量不看質、只算放棄所得、用單一橫斷面資料、用高中畢業者當大學畢業者的反事實。沒有樣本數這一項。", "ref": "Ch.10 p.236"}], "F": [{"q": "Levin Ch.1 對 CE 與 BC 關鍵差別的說法是？", "o": ["CE 用貨幣、BC 用自然單位", "CE 問「要達成 X，哪個方案成本最低」；BC 問「該不該投資能產出 X 的方案 Y」", "CE 只能用於健康領域", "CE 需要成分法，BC 不需要"], "a": "B", "e": "所有類型都用成分法算成本，差別在結果那一側。CE 對應生產效率，BC 對應配置效率。", "ref": "Ch.1 p.21、24"}, {"q": "McMahon Ch.3 中，「社會報酬率」（full method）是？", "o": ["畢業後第一年的薪資成長率", "大學畢業生薪資除以學費", "政府補助占學費的比例", "使效益現值等於總投資成本（機構成本＋放棄所得）的折現率，即 IRR"], "a": "D", "e": "社會報酬率用稅前所得增量對總投資成本；作者用它與 10% 的長期基準比較，且因只含所得，屬狹義、會低估。", "ref": "McMahon Ch.3 p.93–94、98"}, {"q": "McMahon 說「真正的投資成本」除了機構成本，還包括？", "o": ["學生放棄的所得（forgone earnings）", "畢業後的稅款", "學生貸款利息", "教師的退休金"], "a": "A", "e": "政治決策常只盯學費，忽略放棄所得這一大塊。", "ref": "McMahon Ch.3 p.84–85"}, {"q": "McMahon Ch.4 估計非市場效益時，迴歸為什麼要控制所得（取「淨」效益）？", "o": ["為了讓樣本變大", "因為非市場效益都與所得無關", "避免重複計算：不控制所得，教育對健康等的影響會含所得效果，再與所得效益相加就算兩次", "因為所得資料比較容易取得"], "a": "C", "e": "沒有控制所得的研究，在估值時被排除。", "ref": "McMahon Ch.4 p.122–123"}, {"q": "McMahon Ch.5 說偏好用 IRR、不用 NPV 的理由是？", "o": ["NPV 算不出來", "NPV 只能用於私人觀點", "IRR 一定比 NPV 大", "NPV 要先選折現率，而折現率相當武斷（4% 與 6% 算出的 NPV 差很多）"], "a": "D", "e": "作者用 IRR（full method）避開折現率的選擇。這也正好對照 Ch.10 的折現率與敏感度討論。", "ref": "McMahon Ch.5 p.188"}], "Dq": [{"q": "「Talent Search 每位新增畢業生 $47,260，所以 CE 分析告訴我們這個方案值得做。」", "a": "X", "e": "CE 分析回答不了「值不值得」，需要願付價格或 BC 分析。", "ref": "Ch.8 p.175、179"}, {"q": "混合 CE ratio（hybrid）的分子是「成本 − 已貨幣化的效益」。", "a": "O", "e": "作者說它合法但少用：哪些效益可以扣顯得隨意，分子也不是方案成本，難詮釋。", "ref": "Ch.8 p.172–173"}, {"q": "IRR 的好處是不必事先假設折現率，但仍需要與其他投資的利率比較，才知道好不好。", "a": "O", "e": "書中說 IRR 「not fully liberating」：不用先選折現率，但還是要有一個門檻利率來比。", "ref": "Ch.10 p.226"}, {"q": "對於慢慢才見效的早期教育投資，回本期（break-even）分析可能讓它看起來比實際更差。", "a": "O", "e": "回本期只看多久回本，遲效但長期高報酬的方案（如早期教育）會吃虧。", "ref": "Ch.10 p.228–229"}, {"q": "效果最大的方案，CE ratio 一定最好。", "a": "X", "e": "肯亞優秀生獎學金效果 0.190 SD，CE $190；能力分班效果 0.176 SD，CE 只要 $10。效果相近，價格差近 20 倍。", "ref": "Ch.8 p.185、Table 8.6"}, {"q": "Ch.10 的結論是：只要是教育投資，NPV 一定為正。", "a": "X", "e": "作者說多數但不是所有教育投資的 NPV 為正，welfare-to-work 的 education-first 方案就是反例。", "ref": "Ch.10 p.239–240"}]};
+function tagOf(ref){
+  var m;
+  if(/^Ch\.10/.test(ref))return ["p4","Ch.10"];
+  if(/^Ch\.8/.test(ref))return ["p2","Ch.8"];
+  if(/^Ch\.1(?!\d)/.test(ref))return ["p3","Ch.1"];
+  if((m=/^McMahon Ch\.(\d)/.exec(ref)))return ["p1","McMahon Ch."+m[1]];
+  return ["p3","其他"];
+}
+var LET=["A","B","C","D"];
+var ITEMS=[]; // auto-graded
+function addList(key,listId,prefix,type){
+  var data=Q[key];
+  data.forEach(function(it,i){ITEMS.push({id:prefix+(i+1),list:listId,type:type,it:it,n:i+1,prefix:prefix})});
+}
+addList("A","listA","A","mc");addList("Bq","listB","B","mc");addList("Dq","listD","D","tf");addList("F","listF","F","mc");
+var state=lsGet("quiz",{});
+function saveState(){lsSet("quiz",state)}
+ITEMS.forEach(function(x){
+  var host=document.getElementById(x.list);
+  var tg=tagOf(x.it.ref);
+  var card=document.createElement("div");card.className="qcard";
+  var opts;
+  if(x.type==="mc"){
+    opts='<div class="opts">'+x.it.o.map(function(o,i){return '<button class="opt" data-i="'+i+'"><span class="optletter">'+LET[i]+'</span><span class="opttext">'+esc(o)+'</span><span class="optmark"></span></button>'}).join("")+'</div>';
+  }else{
+    opts='<div class="opts tf2"><button class="opt" data-i="O"><span class="optmark"></span><span>○ 對</span></button><button class="opt" data-i="X"><span class="optmark"></span><span>× 錯</span></button></div>';
+  }
+  card.innerHTML='<div class="qhead"><span class="qnum">'+x.id+'</span><span class="tag tag-'+tg[0]+'"><i class="dot"></i>'+tg[1]+'</span></div><p class="qtext">'+esc(x.it.q)+'</p>'+opts+'<div class="explain"></div>';
+  host.appendChild(card);
+  var btns=[].slice.call(card.querySelectorAll(".opt"));
+  var correct=x.type==="mc"?LET.indexOf(x.it.a):(x.it.a==="O"?"O":"X");
+  function val(b){var v=b.getAttribute("data-i");return x.type==="mc"?+v:v}
+  function render(){
+    var chosen=state[x.id];
+    btns.forEach(function(b){
+      b.classList.remove("correct","wrong");b.querySelector(".optmark").textContent="";
+      if(chosen!==undefined){
+        b.classList.add("disabled");
+        if(val(b)===correct){b.classList.add("correct");b.querySelector(".optmark").textContent="✓"}
+        else if(val(b)===chosen){b.classList.add("wrong");b.querySelector(".optmark").textContent="✗"}
+      }
+    });
+    var ex=card.querySelector(".explain");
+    if(chosen!==undefined){
+      var right=(chosen===correct);
+      var ans=x.type==="mc"?("("+x.it.a+")"):(x.it.a==="O"?"○ 對":"× 錯");
+      ex.innerHTML='<b>'+(right?"答對了":"答錯了")+'　正確答案：'+ans+'</b><br>'+esc(x.it.e)+'<br><span class="dim" style="font-size:13px">出處：'+esc(x.it.ref)+'</span>';
+      ex.classList.add("show");
+    }else ex.classList.remove("show");
+  }
+  btns.forEach(function(b){b.onclick=function(){
+    if(state[x.id]!==undefined)return;
+    state[x.id]=val(b);saveState();render();updateScore();
+  }});
+  x.render=render;render();
+});
+function updateScore(){
+  var answered=0,right=0,per={};
+  ITEMS.forEach(function(x){
+    var s=state[x.id];per[x.list]=per[x.list]||{a:0,r:0,n:0};per[x.list].n++;
+    if(s!==undefined){
+      answered++;per[x.list].a++;
+      var c=x.type==="mc"?LET.indexOf(x.it.a):x.it.a;
+      if(s===c){right++;per[x.list].r++}
+    }
+  });
+  document.getElementById("totalScore").innerHTML=
+    '<div class="stat"><b>'+answered+' / '+ITEMS.length+'</b><span>已作答（選擇＋判斷）</span></div>'+
+    '<div class="stat"><b>'+right+' / '+answered+'</b><span>答對（已作答中）</span></div>'+
+    '<div class="stat"><b>'+matchDone.length+' / '+MATCH.length+'</b><span>配對完成</span></div>';
+  var box=document.getElementById("bandMsg");
+  if(answered<ITEMS.length){box.innerHTML="";return}
+  var pct=right/ITEMS.length;
+  var names={listA:"Ch.8 選擇題",listB:"Ch.10 選擇題",listD:"判斷題",listF:"跨讀選擇題"};
+  var back={listA:"回頭讀 Ch.8 p.166–168、173–183、187–189",listB:"回頭讀 Ch.10 p.222–232、238–240",listD:"看各題解析裡的出處頁碼",listF:"看導讀第 3 節對應那一篇的「怎麼讀」"};
+  var low=Object.keys(per).filter(function(k){return per[k].r/per[k].n<0.7});
+  var lvl=pct>=.85?"讀得夠了：可以放心進課堂討論。想更深，可以把情境簡答講給別人聽。":pct>=.65?"大致掌握：回去補錯的題目的出處頁碼，再重做那一部分。":"建議再讀一輪：先重讀 Ch.8 的 8.1、8.3–8.4 與 Ch.10 的 10.1（自己動手算一遍識字方案），再重做。";
+  box.innerHTML='<div class="callout"><p><b>選擇＋判斷 '+right+' / '+ITEMS.length+'（'+Math.round(pct*100)+'%）。</b>'+lvl+'</p>'+
+    (low.length?'<p><b>比較弱的部分：</b>'+low.map(function(k){return names[k]+'（'+per[k].r+'/'+per[k].n+'）→ '+back[k]}).join("；")+'</p>':'')+'</div>';
+}
+
+/* matching */
+var MATCH=[
+ {p:"ce",text:"買一單位成果的價格（成本 ÷ 效果）"},
+ {p:"ce",text:"是效率指標，不是所需預算，也不能單獨回答「值不值得」"},
+ {p:"icer",text:"「多花的錢 ÷ 多得的效果」，用來一階一階往上比，並刪掉被支配的方案"},
+ {p:"npv",text:"效益現值減成本現值，像「利潤」；小於 0 強烈推定應拒絕"},
+ {p:"npv",text:"$20M 的方案即使效益很小，幾乎必然勝過 $2M 的方案"},
+ {p:"bcr",text:"大於 1 表示效益超過成本；「每 $1 有 $1.86」只是簡化說法"},
+ {p:"irr",text:"讓 NPV 剛好等於 0 的折現率；仍要與其他投資的利率比較"},
+ {p:"irr",text:"成本 ＋10%、效益 −10%，就從 34.9% 掉到 23.1%"}
+];
+var MTAG={ce:["p2","CE ratio"],icer:["p2","ICER"],npv:["p4","NPV"],bcr:["p4","BC ratio"],irr:["p4","IRR"]};
+var order=MATCH.map(function(_,i){return i});
+for(var i=order.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=order[i];order[i]=order[j];order[j]=tmp}
+var matchLeft=document.getElementById("matchLeft"),matchRight=document.getElementById("matchRight");
+var matchDone=lsGet("matchDone",[]);var selLeft=null;
+function renderMatch(){
+  matchLeft.innerHTML="";matchRight.innerHTML="";
+  order.forEach(function(idx){
+    var b=document.createElement("button");b.className="mitem";b.textContent=MATCH[idx].text;
+    if(matchDone.indexOf(idx)>-1){b.classList.add("done");b.disabled=true}
+    if(selLeft===idx)b.classList.add("sel");
+    b.onclick=function(){selLeft=(selLeft===idx?null:idx);renderMatch()};
+    matchLeft.appendChild(b);
+  });
+  ["ce","icer","npv","bcr","irr"].forEach(function(p){
+    var all=MATCH.every(function(m,i){return m.p!==p||matchDone.indexOf(i)>-1});
+    var b=document.createElement("button");b.className="mtag tag-"+MTAG[p][0];b.textContent=MTAG[p][1];
+    if(all)b.classList.add("done");
+    b.onclick=function(){
+      if(selLeft===null)return;
+      if(MATCH[selLeft].p===p){matchDone.push(selLeft);lsSet("matchDone",matchDone);selLeft=null;renderMatch();updateScore()}
+      else{b.classList.add("bad");setTimeout(function(){b.classList.remove("bad")},500)}
+    };
+    matchRight.appendChild(b);
+  });
+  document.getElementById("matchScore").innerHTML='<div class="stat"><b>'+matchDone.length+' / '+MATCH.length+'</b><span>配對正確</span></div>';
+}
+document.getElementById("matchReset").onclick=function(){matchDone=[];lsSet("matchDone",matchDone);selLeft=null;renderMatch();updateScore()};
+renderMatch();updateScore();
+
+/* calc questions + open questions */
+var CALC=[{"id": "c1", "stem": "<b>C1．成本效果與增量分析<\/b><p>三個提升閱讀成績的方案，成本為每生每年，效果為相對現況多提升的標準差（SD）：<\/p><table><tr><th>方案<\/th><th>每生成本<\/th><th>效果（SD）<\/th><\/tr><tr><td>X<\/td><td>$300<\/td><td>0.10<\/td><\/tr><tr><td>Y<\/td><td>$500<\/td><td>0.30<\/td><\/tr><tr><td>Z<\/td><td>$900<\/td><td>0.35<\/td><\/tr><\/table><ol type='a'><li>分別求 X、Y、Z 的 CE ratio（每 1 SD 的成本）。<\/li><li>求 Y 相對於 X、以及 Z 相對於 Y 的 ICER。<\/li><li>若決策者最多願意為每多 1 SD 付 $5,000，會選哪個方案？為什麼？<\/li><\/ol>", "ans": "<p>(a) X：300 ÷ 0.10 ＝ <b>$3,000<\/b>；Y：500 ÷ 0.30 ≈ <b>$1,667<\/b>；Z：900 ÷ 0.35 ≈ <b>$2,571<\/b>（每 1 SD）。<\/p><p>(b) Y 相對 X：(500 − 300) ÷ (0.30 − 0.10) ＝ <b>$1,000<\/b>；Z 相對 Y：(900 − 500) ÷ (0.35 − 0.30) ＝ <b>$8,000<\/b>。<\/p><p>(c) 選 <b>Y<\/b>。X→Y 每多 1 SD 只要 $1,000（低於 $5,000，可接受）；Y→Z 每多 1 SD 要 $8,000（高於 $5,000，拒絕）。Z 的 CE ratio（$2,571）看起來不差，但會漏掉「多買的那一步」貴很多；ICER 才是看「多花的錢」的工具。<\/p><p class='hint'>給分（每小題 1 分，共 3 分）：(a) 三個都對；(b) 兩個 ICER 都對；(c) 選 Y 並說出 ICER 與 $5,000 的比較。出處：Ch.8 p.167、178–181<\/p>"}, {"id": "c2", "stem": "<b>C2．NPV、BC ratio 與 IRR<\/b><p>某個職訓方案：成本 $500，在第 0 年一次付清；完成後每年多賺 $200，連續 4 年（第 1 至第 4 年）；折現率 5%。<\/p><ol type='a'><li>求效益現值與 NPV。<\/li><li>求 BC ratio。<\/li><li>若折現率改為 20%，NPV 是正還是負（請算出約略數字）？由此判斷，這個方案的 IRR 比 20% 高還是低？<\/li><\/ol>", "ans": "<p>(a) 效益現值 ＝ 200 ÷ 1.05 ＋ 200 ÷ 1.05² ＋ 200 ÷ 1.05³ ＋ 200 ÷ 1.05⁴ ＝ 190.5 ＋ 181.4 ＋ 172.8 ＋ 164.5 ≈ <b>$709<\/b>；NPV ＝ 709 − 500 ＝ <b>$209<\/b>。<\/p><p>(b) BC ratio ＝ 709 ÷ 500 ≈ <b>1.42<\/b>。<\/p><p>(c) 20% 時：200 × (1/1.2 ＋ 1/1.2² ＋ 1/1.2³ ＋ 1/1.2⁴) ≈ 200 × 2.589 ≈ 518；NPV ≈ <b>＋$18（仍為正）<\/b>。20% 還是正的，代表讓 NPV＝0 的折現率更高，所以 <b>IRR 高於 20%<\/b>（約 21.9%）。<\/p><p class='hint'>給分（每小題 1 分，共 3 分）。時間軸依書中做法：成本在第 0 年、效益在第 1–4 年。出處：Ch.10 p.223、225、226。可用「教學簡報」分頁的試算器驗證。<\/p>"}, {"id": "c3", "stem": "<b>C3．符號陷阱<\/b><p>方案 P 相對現況：增量成本 −$2,000、增量效果 −4 個單位。方案 Q 相對現況：增量成本 ＋$2,000、增量效果 ＋4 個單位。<\/p><ol type='a'><li>求 P、Q 的 CE ratio。<\/li><li>各落在 CE 平面的哪一種情形？<\/li><li>兩個比值一樣，為什麼不能只看比值就決定？該怎麼做決策？<\/li><\/ol>", "ans": "<p>(a) P：(−2,000) ÷ (−4) ＝ <b>＋$500<\/b>；Q：2,000 ÷ 4 ＝ <b>＋$500<\/b>。<\/p><p>(b) P：成本降、效果也降，是「更省但更差」（書中的 D 象限）；Q：成本升、效果也升，是「更貴但更有效」（書中的 C 象限）。<\/p><p>(c) 兩個負數相除得正，所以比值相同，意義卻完全不同。決策要先看符號與象限：Q 要看願付價格（多花的錢值不值得多得的效果）；P 通常依「do no harm」原則排除，除非省下的錢有很重要的其他用途。<\/p><p class='hint'>給分（每小題 1 分，共 3 分）：(c) 要說出「符號 → 象限 → 願付價格」的邏輯。出處：Ch.8 p.176–179<\/p>"}];
+var OPEN=[{"id": "e1", "stem": "<b>E1．<\/b>你在縣府教育局，兩個補救教學方案的 CE 分析結果是：方案 A 每提升 1 SD 的成本比方案 B 低 20%。局長問：「那我們就選 A 吧？」請列出至少四個你會先追問的問題。", "ans": "<p><b>任答 4 點，每點 1 分：<\/b><\/p><ul class='lst'><li><b>成本算全了嗎？<\/b>有沒有漏掉連帶成本（City Connects：CE ratio 差三倍）。<\/li><li><b>比的是什麼？<\/b>兩個方案的效果指標是否相同、是否相對同一個「照舊做法」。<\/li><li><b>對象與規模<\/b>：服務的學生是否相同？規模不同，成本與效果可能不同。<\/li><li><b>異質性<\/b>：對不同族群效果是否一樣？平均 CE 會遮蔽差異（GEMS Math）。<\/li><li><b>增量與願付價格<\/b>：A 便宜 20%，但若 B 效果更大，多花的錢值不值得？（ICER）<\/li><li><b>值不值得<\/b>：CE 只說 A 比 B 便宜，沒說任何一個值得做；預算與門檻另外決定。<\/li><li><b>不確定性<\/b>：估計有多準？（Ch.11）<\/li><\/ul>"}, {"id": "e2", "stem": "<b>E2．<\/b>用你自己的話說明 NPV、BC ratio、IRR 各適合向誰報告、各自最容易漏掉什麼。書中建議怎麼呈現？", "ans": "<ul class='lst'><li><b>NPV<\/b>（1 分）：看總盈餘，適合財政部門看「能賺多少／省多少」；漏掉規模（大方案必勝小方案）與資源需求。<\/li><li><b>BC ratio<\/b>（1 分）：看每 $1 的倍數，適合快速比較相近規模的方案、向決策者溝通；「每 $1」是簡化說法，誘發成本的算法會改變數字。<\/li><li><b>IRR<\/b>（1 分）：看報酬率，適合與其他投資的利率比；仍需門檻、對流量很敏感、不反映規模。<\/li><li><b>書中建議<\/b>（1 分）：三個一起報，也可再加回本期；三者互補，不是誰取代誰（p.229）。<\/li><\/ul>"}, {"id": "e3", "stem": "<b>E3．<\/b>以 Perry 方案為例，說明為什麼「NPV 為正」必須加上「對誰」。再舉一個台灣的教育政策情境，說明換不同觀點時結論可能不同。", "ans": "<ul class='lst'><li><b>帳戶數字<\/b>（1 分）：參與者 $33,177、一般大眾 $128,972、社會 $162,149；成本 $20,947 由大眾負擔（p.230）。<\/li><li><b>核心觀念<\/b>（1 分）：社會＝參與者＋大眾並扣掉移轉；「NPV 為正」要說明是對誰為正，觀點要清楚說明（p.231、234）。<\/li><li><b>台灣情境<\/b>（1 分）：任何合理例子，如學前公共化、免學費或補助方案，說明對家長、納稅人、整體社會的成本與效益不同。<\/li><li><b>結論<\/b>（1 分）：換觀點，NPV 可能正負不同，決策者應同時看多個帳戶（multiple account），並考慮公平與分配。<\/li><\/ul>"}];
+function openCards(list,host,ph){
+  list.forEach(function(item){
+    var card=document.createElement("div");card.className="qcard calcq";
+    var saved=lsGet("open-"+item.id,"");
+    card.innerHTML='<div class="stem">'+item.stem+'</div><textarea class="ans" placeholder="'+ph+'"></textarea><span class="savedmark"></span>'+
+      '<details class="rubric"><summary>參考解答與給分</summary>'+item.ans+'</details>';
+    host.appendChild(card);
+    var ta=card.querySelector("textarea"),mark=card.querySelector(".savedmark");ta.value=saved;var tm=null;
+    ta.addEventListener("input",function(){clearTimeout(tm);tm=setTimeout(function(){lsSet("open-"+item.id,ta.value);mark.textContent="已存在這個瀏覽器";setTimeout(function(){mark.textContent=""},2000)},500)});
+  });
+}
+openCards(CALC,document.getElementById("calcList"),"在這裡寫下算式與答案…");
+openCards(OPEN,document.getElementById("openList"),"在這裡寫下你的回答…");
+
+document.getElementById("quizReset").onclick=function(){
+  if(!window.confirm("確定要清掉所有作答重新開始嗎？"))return;
+  try{Object.keys(localStorage).forEach(function(k){if(k.indexOf(LS)===0&&k!==LS+"theme"&&k!==LS+"tab")localStorage.removeItem(k)})}catch(e){}
+  location.reload();
+};
+
+/* ---------- discussion timers ---------- */
+(function(){
+  var AC=null;
+  function beep(){
+    try{
+      AC=AC||new (window.AudioContext||window.webkitAudioContext)();
+      var t=AC.currentTime;
+      [0,0.18,0.36].forEach(function(off){
+        var o=AC.createOscillator(),g=AC.createGain();
+        o.frequency.value=880;o.type="sine";
+        g.gain.setValueAtTime(0.0001,t+off);
+        g.gain.exponentialRampToValueAtTime(0.18,t+off+0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001,t+off+0.16);
+        o.connect(g);g.connect(AC.destination);
+        o.start(t+off);o.stop(t+off+0.18);
+      });
+    }catch(e){}
+  }
+  function fmt(s){var m=Math.floor(s/60),r=s%60;return m+":"+(r<10?"0":"")+r}
+  [].forEach.call(document.querySelectorAll(".timerbar"),function(bar){
+    var disp=bar.querySelector(".tdisp"),stopBtn=bar.querySelector(".tstop"),chips=[].slice.call(bar.querySelectorAll(".tchip"));
+    var iv=null,remain=0;
+    function stop(){
+      if(iv){clearInterval(iv);iv=null}
+      disp.classList.remove("on","low","done");disp.textContent="--:--";
+      stopBtn.classList.remove("on");
+      chips.forEach(function(c){c.classList.remove("active")});
+    }
+    function tick(){
+      remain--;
+      if(remain<=0){
+        disp.textContent="0:00";disp.classList.add("done");disp.classList.remove("low");
+        clearInterval(iv);iv=null;beep();
+        return;
+      }
+      disp.textContent=fmt(remain);
+      disp.classList.toggle("low",remain<=10);
+    }
+    chips.forEach(function(chip){
+      chip.addEventListener("click",function(){
+        if(iv){clearInterval(iv);iv=null}
+        remain=+chip.getAttribute("data-secs");
+        disp.textContent=fmt(remain);disp.classList.add("on");disp.classList.remove("low","done");
+        stopBtn.classList.add("on");
+        chips.forEach(function(c){c.classList.remove("active")});chip.classList.add("active");
+        beep();
+        iv=setInterval(tick,1000);
+      });
+    });
+    stopBtn.addEventListener("click",stop);
+  });
+})();
+
+
+/* ---------- dedicated slide-deck engine (教學簡報) ---------- */
+(function(){
+  var deckEl=document.getElementById("deck");
+  if(!deckEl)return;
+  var slides=[].slice.call(deckEl.querySelectorAll(".slide"));
+  var n=slides.length;
+  if(!n)return;
+  var cur=0;
+  var narrow=window.matchMedia("(max-width:760px)");
+  var prevBtn=document.getElementById("dPrev"),nextBtn=document.getElementById("dNext"),modeBtn=document.getElementById("dMode"),
+      fsBtn=document.getElementById("dFs"),curEl=document.getElementById("dCur"),totEl=document.getElementById("dTot"),
+      barEl=document.getElementById("dBar");
+  totEl.textContent=n;
+  function one(){return deckEl.classList.contains("one")}
+  function mark(i){
+    curEl.textContent=i+1;
+    barEl.style.width=((i+1)/n*100)+"%";
+    [].forEach.call(document.querySelectorAll(".djump"),function(b){b.classList.toggle("on",+b.getAttribute("data-i")===i)});
+  }
+  function go(i,doScroll){
+    cur=Math.max(0,Math.min(n-1,i));
+    if(one()){slides.forEach(function(s,k){s.classList.toggle("on",k===cur)})}
+    else if(doScroll!==false){slides[cur].scrollIntoView({block:"start",behavior:"smooth"})}
+    mark(cur);
+    lsSet("dslide",cur);
+  }
+  function setMode(isOne){
+    deckEl.classList.toggle("one",isOne&&!narrow.matches);
+    modeBtn.textContent=isOne?"捲動瀏覽":"逐張播放";
+    modeBtn.setAttribute("aria-pressed",String(!isOne));
+    lsSet("dmode",isOne?"one":"all");
+    go(cur);
+  }
+  prevBtn.addEventListener("click",function(){go(cur-1)});
+  nextBtn.addEventListener("click",function(){go(cur+1)});
+  modeBtn.addEventListener("click",function(){setMode(!one())});
+  fsBtn.addEventListener("click",function(){
+    try{
+      if(!document.fullscreenElement){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen().catch(function(){})}
+      else{document.exitFullscreen()}
+    }catch(e){}
+  });
+  [].forEach.call(document.querySelectorAll(".djump"),function(b){b.addEventListener("click",function(){go(+b.getAttribute("data-i"))})});
+  document.addEventListener("keydown",function(e){
+    if(panels.deck.hidden)return;
+    if(e.target&&(e.target.closest?e.target.closest("input,textarea,select"):/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)))return;
+    var k=e.key;
+    if(k==="ArrowRight"||k==="PageDown"||(k===" "&&one())){e.preventDefault();go(cur+1)}
+    else if(k==="ArrowLeft"||k==="PageUp"){e.preventDefault();go(cur-1)}
+    else if(k==="Home"){go(0)}else if(k==="End"){go(n-1)}
+  });
+  var sx=null;
+  deckEl.addEventListener("touchstart",function(e){sx=e.touches[0].clientX},{passive:true});
+  deckEl.addEventListener("touchend",function(e){
+    if(sx===null||!one())return;
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>60)go(cur+(dx<0?1:-1));
+    sx=null;
+  },{passive:true});
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(entries){
+      if(one())return;
+      entries.forEach(function(en){if(en.isIntersecting){cur=+en.target.getAttribute("data-i");mark(cur);lsSet("dslide",cur)}});
+    },{rootMargin:"-45% 0px -50% 0px"});
+    slides.forEach(function(s){io.observe(s)});
+  }
+  cur=+lsGet("dslide",0)||0;
+  setMode(lsGet("dmode","one")!=="all");
+  if(narrow.addEventListener)narrow.addEventListener("change",function(){setMode(lsGet("dmode","one")!=="all")});
+})();
+
+})();
+</script>
+</body>
+</html>
